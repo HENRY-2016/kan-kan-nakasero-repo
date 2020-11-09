@@ -126,11 +126,11 @@
     <div class="description-contents"><br>
         <div id="description-content-div">
             <center>
-                    <form class="admin-edits-form" action="http://127.0.0.1:4444/create_paint_colour_names" method="POST">
-                        <label for="uname"><b>Paint</label><br>
+                    <form class="admin-edits-form" action="http://127.0.0.1:4444/utilities_create_paint_colour_names" method="POST">
+                        <label for="uname">Paint</label><br>
                         <input type="text" placeholder="Colour" name="name" class="order-inputs" autocomplete="off" required>
 
-                        <label for="uname"><b>Password</label><br>
+                        <label for="uname">Password</label><br>
                         <input type="text" placeholder="your pin" name="pwd" class="order-inputs" autocomplete="off" required>
 
                         <button type="submit" class="submit-btn" > Done</button><br>
@@ -148,7 +148,7 @@
     <div class="description-contents"><br>
         <div id="description-content-div">
                 <center>
-                    <form class="admin-edits-form" enctype="multipart/form-data"  action="http://127.0.0.1:4444/create_paint_product_name_price" method="POST">
+                    <form class="admin-edits-form" enctype="multipart/form-data"  action="http://127.0.0.1:4444/utilities_create_retail_paint_product_name_price" method="POST">
                         <label >Product</label><br>
                         <select type="text" placeholder="Order No" name="productname" class="order-inputs" autocomplete="off" required>
                             <option value="Pack">Pack</option>   
@@ -200,13 +200,13 @@
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <button class="main-acordination-btns">Subdealer :: Type </button>
+    <button class="main-acordination-btns">Painter :: Type </button>
     <div class="description-contents"><br>
         <div id="description-content-div">
                 <center>
-                    <form class="admin-edits-form"  action="http://127.0.0.1:4444/create_paint_subdealer_name_price" method="POST">
-                        <!-- <label >Product</label><br> -->
-                        <!-- <select type="text" placeholder="Order No" name="productname" class="order-inputs" autocomplete="off" required>
+                    <form class="admin-edits-form"  action="http://127.0.0.1:4444/utilites_create_painter_product_names_prices" method="POST">
+                        <!-- <label >Product</label><br>
+                        <select type="text" placeholder="Order No" name="productname" class="order-inputs" autocomplete="off" required>
                             <option value="Pack">Pack</option>   
                             <option value="Primers">Primers</option> 
                             <option value="Varnish">Varnish</option>
@@ -220,17 +220,74 @@
                             <option value="Water proofing">Water proofing</option> 
                             <option value="Gloss-Eggshell">Gloss-Eggshell</option>
                             <option value="Aluminium-Bitumious">Aluminium-Bitumious</option>
-                        </select> -->
+                        </select>  -->
 
                         <!-- <label>Picture</label><br>
                         <input type="file" name="file" ><br> -->
 
                         <label>Name</label><br>
-                        <input type="text" placeholder="name of Product" name="name" class="order-inputs" autocomplete="off" required>
+                        <input type="text" placeholder="name eg Vinyl Silk..." name="name" class="order-inputs" autocomplete="off" required>
 
-                        <!-- <label>Description</label><br>
-                        <input type="text" placeholder="description" name="description" class="order-inputs" autocomplete="off" required> -->
+                        
+                        <label>20 Ltrs</label><br>
+                        <input type="text" placeholder="20 Ltrs Price" name="price20ltrs" class="order-inputs" autocomplete="off" required>
+                        
+                        <label>4 Ltrs</label><br>
+                        <input type="text" placeholder="4 Ltrs Price" name="price4ltrs" class="order-inputs" autocomplete="off" required>
+                
+                        <label>1 Ltrs</label><br>
+                        <input type="text" placeholder="1 Ltrs Price" name="price1ltr" class="order-inputs" autocomplete="off" required>
+                        
+                        <label>0.5</label><br>
+                        <input type="text" placeholder="0.5 Ltrs Price" name="price0ltr" class="order-inputs" autocomplete="off" required>
+                        
+                        <label>Password</label><br>
+                        <input type="text" placeholder="your pin" name="pwd" class="order-inputs" autocomplete="off" required>
+                            
+                        <button type="submit" class="submit-btn" > Done</button><br>
+                    </form><br>
+            </center>
+        </div><!--==== END OF CONTENT DIV ==== -->
+    </div>
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <button class="main-acordination-btns">Subdealer :: Type </button>
+    <div class="description-contents"><br>
+        <div id="description-content-div">
+                <center>
+                    <form class="admin-edits-form"  action="http://127.0.0.1:4444/utilities_create_subdealer_product_names_prices" method="POST">
+                        <!-- <label >Product</label><br>
+                        <select type="text" placeholder="Order No" name="productname" class="order-inputs" autocomplete="off" required>
+                            <option value="Pack">Pack</option>   
+                            <option value="Primers">Primers</option> 
+                            <option value="Varnish">Varnish</option>
+                            <option value="Thinners">Thinners</option>
+                            <option value="Emulsion">Emulsion</option>
+                            <option value="Undercoat">Undercoat</option>
+                            <option value="Roof-Floor">Roof-Floor</option>
+                            <option value="Misc-Sundry">Misc-Sundry</option> 
+                            <option value="Road Marking">Road Marking</option>
+                            <option value="Architectural">Architectural</option>
+                            <option value="Water proofing">Water proofing</option> 
+                            <option value="Gloss-Eggshell">Gloss-Eggshell</option>
+                            <option value="Aluminium-Bitumious">Aluminium-Bitumious</option>
+                        </select>  -->
 
+                        <!-- <label>Picture</label><br>
+                        <input type="file" name="file" ><br> -->
+
+                        <label>Name</label><br>
+                        <input type="text" placeholder="name eg Vinyl Silk..." name="name" class="order-inputs" autocomplete="off" required>
+
+                        
                         <label>20 Ltrs</label><br>
                         <input type="text" placeholder="20 Ltrs Price" name="price20ltrs" class="order-inputs" autocomplete="off" required>
                         

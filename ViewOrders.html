@@ -1,13 +1,15 @@
 
 <html>
 <head>
-<title>View Orders </title>
+<title>Admin | View Orders </title>
 <meta charset="utf-8">
 <script src="static/js/others/adminedits.js" ></script>
 <script src="static/js/main.js" ></script>
 <script src="static/js/main_view.js" ></script>
 <script src="static/js/ordersreceived.js" ></script>
 <script src="static/js/jquery.min.js" ></script>
+<link rel="stylesheet" type="text/css" href="static/css/main.css" >
+<link rel="stylesheet" type="text/css" href="static/css/w3.css">
 
 <script>
     function do_logic ()
@@ -21,8 +23,7 @@
         // showdemo ()
     }
 </script>
-<link rel="stylesheet" type="text/css" href="static/css/main.css" >
-<link rel="stylesheet" type="text/css" href="static/css/w3.css">
+
 </head>
 <body class="main_body" onload=" do_logic () ">
 <div id="main-header">
@@ -131,246 +132,115 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <button class="main-acordination-btns">Colour </button>
-    <div class="description-contents"><br>
-        <div id="description-content-div">
+    <button class="main-acordination-btns">Prices </button>
+    <div class="acordination-contents-area"><br>
+        <center>
+            <button onclick="fetch_subdealer_names_and_prices ('plascon_subdealer_names_and_prices_endpoint','subdealer-prices-tbody','subdealer-prices-div')" class="show-btn entries_page_fonts"  >Show</button>
+                <div id="subdealer-prices-div">
+                        <table class=" w3-bordered user-scrolling-table">
+                            <tbody id="subdealer-prices-tbody"></tbody>
+                        </table>
+                </div>
+        </center>
+    </div>
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <button class="main-acordination-btns">New Order </button>
+    <div class="acordination-contents-area"><br>
+        <div class="order-input-div">
             <center>
-                    <form class="admin-edits-form" action="http://127.0.0.1:4444/create_paint_colour_names" method="POST">
-                        <label for="uname"><b>Paint</label><br>
-                        <input type="text" placeholder="Colour" name="name" class="order-inputs" autocomplete="off" required>
-
-                        <label for="uname"><b>Password</label><br>
-                        <input type="text" placeholder="your pin" name="pwd" class="order-inputs" autocomplete="off" required>
-
-                        <button type="submit" class="submit-btn" > Done</button><br>
-                    </form><br>
+                <form autocomplete="off" id="products-form">
+                    <label class="input-discription-labels">product type</label><br>
+                    <div class="autocomplete">
+                        <input id="type-input-id" type="text" name="paint_name" placeholder="Type first letter" class="paint-name order-inputs">
+                    </div><br>
+                    <label class="input-discription-labels">select size</label>
+                    <select id="size-input-id" onchange="DisplayCostPrice ('type-input-id','size-input-id','cost-price-id')" name="paint_name" id="size-id" placeholder="Size" class="paint-name order-inputs">
+                        <option></option>
+                        <option value="1ltr" >1 ltr</option>
+                        <option value="4ltrs" >4 ltrs</option>
+                        <option value="20ltrs" >20 ltrs</option>
+                    </select>
+                    <label class="input-discription-labels">colour name</label>
+                    <select id="colour-input-id" placeholder="Colour" class="paint-name order-inputs"><option></option></select>
+                    <input  id="qty-input-id" class="order-inputs" type="text" placeholder="Quantity"  name="paint_name" />
+                    <input id="cost-price-id"  readonly class="order-inputs" type="text"  name="paint_name" placeholder="Cost" />
+                    <input id="total-input-id" readonly class="subtotalinputs order-inputs" name="paint_name" placeholder="Total" type="text"/>
+                </form>
+                <button onclick="CreatCustomerList('type-input-id','size-input-id','colour-input-id','qty-input-id','cost-price-id','total-input-id','un-ordered-list-id')" class="add-btn-order-modal">Add</button>
+            </center>
+            <center><label>Customer list</label></center>
+                <ul id="un-ordered-list-id"></ul>
+            <center>
+                <form id="customer-info-form">
+                    <br>
+                    <input  id="name" class="order-inputs" type="text" placeholder="Customer Name will be done automatially" />
+                    <input  id="contact" class="order-inputs" type="text" placeholder="Contacts will be done automatially"  />
+                    <!-- <input id="amount-id-1"  class="order-inputs " type="date"  name="paint_name" /> -->
+                    <input id="final-total-id" class="subtotalinputs order-inputs" placeholder="Final Total" type="text"/>
+                </form>
+                <button class="next-to-payment-btn" onclick="document.getElementById('id01').style.display='block'" >Next</button>
             </center>
         </div>
     </div>
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <button class="main-acordination-btns">Retail :: Panel </button>
-    <div class="description-contents"><br>
-        <div id="description-content-div">
-                <center>
-                    <form class="admin-edits-form" enctype="multipart/form-data"  action="http://127.0.0.1:4444/create_paint_product_name_price" method="POST">
-                        <label >Product</label><br>
-                        <select type="text" placeholder="Order No" name="productname" class="order-inputs" autocomplete="off" required>
-                            <option value="Pack">Pack</option>   
-                            <option value="Primers">Primers</option> 
-                            <option value="Varnish">Varnish</option>
-                            <option value="Thinners">Thinners</option>
-                            <option value="Emulsion">Emulsion</option>
-                            <option value="Undercoat">Undercoat</option>
-                            <option value="Roof-Floor">Roof-Floor</option>
-                            <option value="Misc-Sundry">Misc-Sundry</option> 
-                            <option value="Road Marking">Road Marking</option>
-                            <option value="Architectural">Architectural</option>
-                            <option value="Water proofing">Water proofing</option> 
-                            <option value="Gloss-Eggshell">Gloss-Eggshell</option>
-                            <option value="Aluminium-Bitumious">Aluminium-Bitumious</option>
-                        </select>
-
-                        <label>Picture</label><br>
-                        <input type="file" name="file" ><br>
-
-                        <label>Name</label><br>
-                        <input type="text" placeholder="name of Product" name="name" class="order-inputs" autocomplete="off" required>
-
-                        <label>Description</label><br>
-                        <input type="text" placeholder="description" name="description" class="order-inputs" autocomplete="off" required>
-
-                        <label>20 Ltrs</label><br>
-                        <input type="text" placeholder="20 Ltrs Price" name="price20ltrs" class="order-inputs" autocomplete="off" required>
                         
-                        <label>4 Ltrs</label><br>
-                        <input type="text" placeholder="4 Ltrs Price" name="price4ltrs" class="order-inputs" autocomplete="off" required>
-                
-                        <label>1 Ltrs</label><br>
-                        <input type="text" placeholder="1 Ltrs Price" name="price1ltr" class="order-inputs" autocomplete="off" required>
-                        
-                        <label>0.5</label><br>
-                        <input type="text" placeholder="0.5 Ltrs Price" name="price0ltr" class="order-inputs" autocomplete="off" required>
-                        
-                        <label>Password</label><br>
-                        <input type="text" placeholder="your pin" name="pwd" class="order-inputs" autocomplete="off" required>
-                            
-                        <button type="submit" class="submit-btn" > Done</button><br>
-                    </form><br>
-            </center>
-        </div><!--==== END OF CONTENT DIV ==== -->
-    </div>
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <button class="main-acordination-btns">Sub Dealer :: Panel </button>
-    <div class="description-contents"><br>
-        <div id="description-content-div">
-            <center>
-                <!--
-                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                @
-                @		SUB DEALER RECEIVED ORDERS
-                @
-                @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-                -->
-                <br>
-                <button onclick="Show_subdealer_orders_received_root_div ()" class="clour_types_btn entries_page_fonts" > subdealer </button><br><br>
-                    <!-- <div id="subdealer-orders-received-root-div"> -->
-                    <button onclick="show_subdealer_orders_received_view_all_div ()" class="view-btns-children entries_page_fonts">View all</button> <br><br>
-                        <div id="subdealer-orders-received-view-all-div">
-                            <button onclick="fetch_orders_received_all_data ('subdealer_orders_view_all_endpoint') " class="show-btn entries_page_fonts"  >Show</button>
-                            <div id="subdealer-orders-received-loader-all" class="loader"></div>
-                            <div id="subdealer-show-all-tbody-div">
-                                <center>
-                                    <!-- <div id="plascon-customer-list-div"></div> -->
-                                </center>
-                            </div>
-                            <button onclick="close_subdealer_orders_received_view_all_div ()"  class="close-child-btn entries_page_fonts" >Close</button><br><br>
-                        </div>
-
-                <!-- ===================================================== -->
-                    <button onclick="show_subdealer_orders_received_view_date_div ()" class="  view-btns-children entries_page_fonts">By Date</button> <br><br>
-                        <div id="subdealer-orders-received-date-div">
-                            <button onclick="show_subdealer_orders_received_date_today_grand_child_div ()" class="view-btns-grand-child   entries_page_fonts">Today</button>
-                                <div id="subdealer-orders-received-date-today-grand-child-div" >
-                                    <button onclick=" fetch_subdealer_orders_received_date_today_data ()  " class="show-btn entries_page_fonts"  >Show</button>
-                                    <div id="subdealer-orders-received-loader-date-today" class="loader"></div>
-                                        <div id="orders-view-by-date-today-div">
-                                            <center>
-                                                <table class=" w3-bordered user-scrolling-table">
-                                                    <tbody id="subdealer-date-today-tbody"></tbody>
-                                                </table>
-                                            </center>
-                                        </div>
-                                    <button onclick="close_subdealer_orders_received_date_today_grand_child_div ()" class="close-child-btn entries_page_fonts" >Close</button><br><br>
-                                </div><br><br>
-                    <!-- .......................................... -->
-                    <button onclick="show_subdealer_orders_received_date_grand_child_div ()" class="view-btns-grand-child entries_page_fonts">Date</button>
-                        <div id="subdealer-orders-received-date-grand-child-div" >
-                            <form class="orders_from_to_form" id="orders-date-date-form" >
-                                <label>Date</label>
-                                <input class="orders_view_form_input" type="date" name="date" onchange="fetch_subdealer_orders_received_date_date_data ()" ><br>
+    <div id="id01" class="w3-modal" >
+            <div class="w3-modal-content">
+                <div class="w3-container">
+                    <br>
+                    <script>
+                        function close_popup_window (){document.getElementById('id01').style.display='none';document.getElementById("products-form").reset();}
+                    </script>
+                    <span onclick="close_popup_window ()" class=" close-x fontstyles">X</span>
+                    <div id="order-inputs" class="header-order-modal">
+                        <center>
+                            <form id="products-form" >
+                                <label class="process-payments-labels">Process Payment </label><br>
+                                <label class="process-payments-labels" >Amount :: <span id="amountspan"> </span></label><br>
+                                <label class="process-payments-labels" >Charges :: <span id="chargesspan"> </span></label><br>
+                                <label class="process-payments-labels" >Total :: <span id="totalspan"> </span></label><br>
+                                <input class="order-inputs" type="text" placeholder="Amount"  name="paint_name" />
                             </form>
-                            <button class="show-btn entries_page_fonts"  ></button>
-                            <div id="subdealer-orders-received-loader-date-date" class="loader"></div>
-                            <div id="date-date-div" >
-                                <center>
-                                    <table class=" w3-bordered user-scrolling-table">
-                                        <tbody id="subdealer-date-date-tbody"></tbody>
-                                    </table>
-                                </center>
-                            </div>
-                            <button onclick="close_subdealer_orders_received_date_grand_child_div ()" class="close-child-btn entries_page_fonts">Close</button>
-                        </div><br><br>
+                            <button class="next-to-payment-btn" onclick="SubmiteData ('orders_subdealer_order_post')">Pay</button>
+                        </center>
                     </div>
-                <!-- ===================================================== -->
+                </div>
+            </div>
+        </div>
 
-                    <button onclick="show_subdealer_orders_received_from_to_week_div ()" class="view-btns-children entries_page_fonts">From -- To</button> <br><br>
-                        <div id="subdealer-orders-received-from-to-div">
-                            <button  onclick="show_subdealer_orders_received_from_to_grand_child_div ()" class="view-btns-grand-child entries_page_fonts">All</button>
-                            <div id="subdealer-orders-received-from-to-all-grand-child-div">
-                                <form class="orders_from_to_form" id="subdealer-from-to-form">
-                                    <table>
-                                        <tr>
-                                            <td>
-                                                <label> From </label>
-                                                <input class="orders_view_form_input" type="date" autocomplete="off" name="from">
-                                            </td>
-                                            <td>
-                                                <label> To </label>
-                                                <input class="orders_view_form_input" type="date" autocomplete="off" name="to">
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </form>
-                            <div id="from-to-div">
-                                <button onclick="fetch_subdealer_orders_received_from_to_all_data () " class="show-btn entries_page_fonts"  >Show</button>
-                                    <div id="subdealer-orders-received-loader-from-to-all" class="loader"></div>
-                                        <center>
-                                            <table class=" w3-bordered user-scrolling-table">
-                                                <tbody id="subdealer-from-to-all-tbody"></tbody>
-                                            </table>
-                                        </center>
-                                <button onclick="close_subdealer_orders_received_from_to_grand_child_div ()" class="close-child-btn entries_page_fonts" >Close</button>
-                            </div>
-                            </div><br><br><br>
-                        </div>
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <button class="main-acordination-btns">Received Orders </button>
+    <div class="acordination-contents-area"><br>
+        <button  class="grand-child-btn fontstyles">All</button><br><br>
+            <div id="plascon-original-view-all-div">
+                <button onclick="FetchOrdersReceivedAllData ('vieworders_subdealer_orders_view_all_endpoint','plascon-appending-view-all-div','plascon-orders-received-div')" class="show-btn  entries_page_fonts"  >Show</button>
+                <div id="plascon-orders-received-div"> </div>
+                <p id="plascon-appending-view-all-div"></p>
+                <br><br>
+            </div>
 
-                <!-- ===================================================== -->
-                    <button onclick="show_subdealer_orders_received_view_last_week_div ()" class=" view-btns-children entries_page_fonts">Last Week</button> <br><br>
-                        <div id="subdealer-orders-received-last-week-div">
-                            <button onclick="show_subdealer_orders_received_last_week_all_grand_child_div ()" class="view-btns-grand-child   entries_page_fonts">All</button>
-                                <div id="subdealer-orders-received-last-week-all-grand-child-div">
-                                    <button onclick="fetch_subdealer_orders_received_last_week_all_data ()  " class="show-btn entries_page_fonts" >Show</button><br><br>
-                                        <div id="subdealer-orders-received-loader-last-week-all" class="loader"></div>
-                                        <div id="last-week-all-grand-child" >
-                                            <center>
-                                                <table class=" w3-bordered user-scrolling-table">
-                                                    <tbody id="subdealer-last-week-all-tbody"></tbody>
-                                                </table>
-                                            </center>
-                                        </div>
-                                    <button onclick="close_subdealer_orders_received_last_week_all_grand_child_div ()"  class="close-child-btn entries_page_fonts" >Close</button><br><br>
-                                </div><br><br>
-                            </div>
-
-                <!-- ===================================================== -->
-                    <button onclick="show_subdealer_orders_received_this_month_grand_child_div ()" class="view-btns-children entries_page_fonts">This Month</button> <br><br>
-                        <div id="subdealer-orders-received-this-month-div">
-                            <button  onclick="show_subdealer_orders_received_this_month_all_grand_child_div()" class="view-btns-grand-child   entries_page_fonts">All</button>
-                                <div id="subdealer-orders-received-this-month-all-grand-child-div">
-                                    <button onclick=" fetch_subdealer_orders_received_this_month_all_data ()"   class="show-btn entries_page_fonts"  >Show</button>
-                                <div id="subdealer-orders-received-loader-this-month-all" class="loader"></div>
-                                        <center>
-                                            <table class=" w3-bordered user-scrolling-table">
-                                                <tbody id="subdealer-this-month-all-tbody"></tbody>
-                                            </table>
-                                        </center>
-                                    <button onclick="close_subdealer_orders_received_this_month_all_grand_child_div ()"  class="close-child-btn entries_page_fonts" >Close</button><br><br>
-                                </div><br><br>
-                        </div>
-                <!-- ===================================================== -->
-                <button onclick="show_subdealer_orders_received_view_last_month_div ()" class="view-btns-children  entries_page_fonts">Last Month</button> <br><br>
-                    <div id="subdealer-orders-received-last-month-div">
-                        <button onclick="show_subdealer_orders_received_last_month_all_grand_child_div ()" class="view-btns-grand-child   entries_page_fonts">All</button><br><br>
-                            <div id="subdealer-orders-received-last-month-by-all-grand-child-div">
-                                <button onclick="fetch_subdealer_orders_received_last_month_all_data ()  " class="show-btn entries_page_fonts"  >Show</button>
-                                    <div id="subdealer-orders-received-loader-last-month-all" class="loader"></div>
-                                    <center>
-                                        <table class=" w3-bordered user-scrolling-table">
-                                            <tbody id="subdealer-last-month-all-tbody"></tbody>
-                                        </table>
-                                    </center>
-                                <button onclick="close_subdealer_orders_received_last_month_all_grand_child_div ()" class="close-child-btn  entries_page_fonts" >Close</button><br><br>
-                            </div>
-                    </div>
-                    <!-- </div> -->
-            </center>
-        </div><!--==== END OF CONTENT DIV ==== -->
+        <!-- <button onclick="ShowOrdersReceivedViewFromToDiv ()" class="grand-child-btn fontstyles">From To </button><br><br>
+            <div id="orders-view-from-to-div" >
+                <button onclick="OrdersView ('orders_view_from_to','orders-show-from-to-tbody','orders-view-from-to-div')" class="show-btn  entries_page_fonts"  >Show</button>
+                        <table class=" w3-bordered user-scrolling-table">
+                            <tbody id="orders-show-from-to-tbody"></tbody>
+                        </table>
+            </div> -->
     </div>
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    
-            <!--==== END OF CONTENT DIV ==== -->
-    <br>
-    <!-- <div id="NaviDivFooter">
-        <center>
-            <label class="footer-label">Construction Supply</label>
-        </center>
-    </div> -->
+    <button class="main-acordination-btns"> </button>
+
 </div>
 
   
-<div id="plascon-customer-list-div"></div>
+</div>
+
+  
+<!-- <div id="plascon-customer-list-div"></div> -->
 
 
 <script>

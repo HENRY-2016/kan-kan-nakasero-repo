@@ -8,72 +8,6 @@ var ordersreceived_url = "http://127.0.0.1:4444/";
 
 var seconds = 1000;
 
-function CreateDynamicList (listoflists)
-{
-    /*
-    This creats the following stracture
-
-        <ul id="myUL">
-        <span class="headings">(holds title)
-        <ul class="nested">
-        <li class="customer-list">
-    */
-    // create elements
-    let HtmlDiv = document.getElementById("plascon-customer-list-div");
-    let outer_ul =  document.createElement('ul');
-    let title_span = document.createElement('span');
-    let sub_title_label = document.createElement('label'); 
-    let nested_ul = document.createElement('ul');
-    let customer_li_list = document.createElement('li');
-    let br = document.createElement('br');
-    let br2 = document.createElement('br');
-
-    let stringfromlist;
-
-    // set attribes to css
-    outer_ul.setAttribute('id','myUL');
-    sub_title_label.setAttribute('class','sub-title-headings ')
-    title_span.setAttribute('class','headings view_font_styles');
-    nested_ul.setAttribute('class','nested view_font_styles')
-    customer_li_list.setAttribute('class','customer-list view_font_styles')
-
-    // server object ===> re.NAME,re.ORDERNUMBER,re.TOTAL,re.CONTACT,re.DATE,re.LIST
-    // split to customer attributs
-    name = listoflists[0]
-    ordernumember = listoflists[1]
-    total = listoflists[2]
-    contact = listoflists[3]
-    orderdate = listoflists[4]
-    customerlist = listoflists[5];
-
-    // set text to created elements
-    title_span.innerHTML = name +" | "+ ordernumember;
-    sub_title_label.innerHTML =  contact +" | "+ orderdate+" | "+total 
-    stringfromlist = customerlist.toString();// convert to string 
-    formatedlist =  stringfromlist.replace(/×/g,"<br>") //insert a <br> tag note:: × is different 4m x
-    customer_li_list.innerHTML = formatedlist;
-    
-    // console.log(outer_ul);
-    // console.log(title_span);
-    // console.log(nested_ul);
-    // console.log(customer_li_list);
-
-    // appendChildrens to html
-    // sub_title_label.appendChild(customer_li_list); // close li
-    // nested_ul.appendChild(sub_title_label) // close label
-    // title_span.appendChild(nested_ul); //close ul
-    // outer_ul.appendChild(title_span); // close span
-    // HtmlDiv.appendChild(outer_ul); // close ul
-     
-    
-    outer_ul.appendChild(br);// close br
-    customer_li_list.appendChild(sub_title_label); // close sub title
-    title_span.appendChild(customer_li_list); // close label
-    outer_ul.appendChild(title_span); // close span
-    HtmlDiv.appendChild(outer_ul); // close ul
-}
-
-
 function ShowCloseDynamicDropdownList (id) 
 {
     let x = document.getElementById(id);
@@ -82,9 +16,10 @@ function ShowCloseDynamicDropdownList (id)
 
 }
 
-function CreateDynamicDropdownList  (listoflists,id)
+function CreateDynamicDropdownList  (listoflists,id,OriginalHtmlDiv,htmldiv)
 {
-    let HtmlDiv = document.getElementById("plascon-customer-list-div");
+    let OriginalDiv = document.getElementById(OriginalHtmlDiv)
+    let HtmlDiv = document.getElementById(htmldiv);
     let DivContainer = document.createElement('div');
     let DropdownHoverDiv = document.createElement('div');
     let ButtonTxt = document.createElement('button') //document.createElement('label');
@@ -107,7 +42,7 @@ function CreateDynamicDropdownList  (listoflists,id)
     name = listoflists[0]
     number = listoflists[1]
     amount = listoflists[2]
-    contact = listoflists[3]
+    status = listoflists[3]
     date = listoflists[4]
     list = listoflists[5]
 
@@ -118,7 +53,7 @@ function CreateDynamicDropdownList  (listoflists,id)
 
     ButtonTxt.innerHTML = name +" | " +amount;
     ListTxt.innerHTML = formatedlist
-    LabelTxt.innerHTML = date+ " | "+contact+ " | "+number+ " | "+ amount
+    LabelTxt.innerHTML = date+" | "+number+ " | "+ amount +" | "+status
 
     // appendChild to ....
     ListTxt.appendChild(LabelTxt);
@@ -127,7 +62,7 @@ function CreateDynamicDropdownList  (listoflists,id)
     DropdownHoverDiv.appendChild(ButtonTxt);
     DivContainer.appendChild(DropdownHoverDiv);
     HtmlDiv.appendChild(DivContainer);
-    document.body.appendChild(HtmlDiv);
+    OriginalDiv.appendChild(HtmlDiv);
 }
 
 
@@ -140,27 +75,14 @@ function CreateDynamicDropdownList  (listoflists,id)
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 */
 
-
-function showdemo ()
-{
-    let custarray = [[ "Vinyl Matt Lollipop 4ltrs 10 45000 450,000", "05:24:32", "2020-10-28" ],[ "WeatherGuard Black 20ltrs 30 285000 8,550,000", "05:24:31", "2020-10-28"]]
-
-        for (id=0; id<=4;id++)
-        {
-                // CreateDynamicReadMore_ReadLess (id)
-                ShowCloseDynamicReadMore_ReadLess ();
-                setTimeout(save_show_all_data, seconds)
-        }
-}
-    // ==================
-function fetch_orders_received_all_data (endpointurl)
+// ==================
+function FetchOrdersReceivedAllData (endpointurl,OriginalHtmlDiv,htmldiv)
 {
     let req = new XMLHttpRequest();
     req.open('post', ordersreceived_url + endpointurl,true)
     req.onload = function ()
         {
             let results = JSON.parse(this.responseText);
-            console.log(results)
             if (! results || !results.length){alert("No results found")}
             else
                 {
@@ -169,13 +91,13 @@ function fetch_orders_received_all_data (endpointurl)
                     {
                         let currentlistindex = results[listindex]
                         // CreateDynamicList (currentlistindex)
-                        CreateDynamicDropdownList (currentlistindex,id)
+                        CreateDynamicDropdownList (currentlistindex,id,OriginalHtmlDiv,htmldiv)
                         listindex ++;
                     }
                 }
         }
         req.send();
-    setTimeout(save_show_all_data, seconds)
+    // setTimeout(save_show_all_data, seconds)
 }
 
 
