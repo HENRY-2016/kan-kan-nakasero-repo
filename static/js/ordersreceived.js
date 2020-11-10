@@ -16,10 +16,12 @@ function ShowCloseDynamicDropdownList (id)
 
 }
 
-function CreateDynamicDropdownList  (listoflists,id,OriginalHtmlDiv,htmldiv)
+function CreateDynamicDropdownList  (listoflists,id,OuterHtmlDiv)
 {
-    let OriginalDiv = document.getElementById(OriginalHtmlDiv)
-    let HtmlDiv = document.getElementById(htmldiv);
+    // let OriginalDiv = document.getElementById(htmldiv)
+    // OriginalDiv.innerHTML = " ";
+    let HtmlDiv = document.getElementById(OuterHtmlDiv);
+    // HtmlDiv.innerHTML = ' ';
     let DivContainer = document.createElement('div');
     let DropdownHoverDiv = document.createElement('div');
     let ButtonTxt = document.createElement('button') //document.createElement('label');
@@ -62,7 +64,7 @@ function CreateDynamicDropdownList  (listoflists,id,OriginalHtmlDiv,htmldiv)
     DropdownHoverDiv.appendChild(ButtonTxt);
     DivContainer.appendChild(DropdownHoverDiv);
     HtmlDiv.appendChild(DivContainer);
-    OriginalDiv.appendChild(HtmlDiv);
+    // OriginalDiv.appendChild(HtmlDiv);
 }
 
 
@@ -76,7 +78,7 @@ function CreateDynamicDropdownList  (listoflists,id,OriginalHtmlDiv,htmldiv)
 */
 
 // ==================
-function FetchOrdersReceivedAllData (endpointurl,OriginalHtmlDiv,htmldiv)
+function FetchOrdersReceivedAllData (endpointurl,OuterHtmlDiv)
 {
     let req = new XMLHttpRequest();
     req.open('post', ordersreceived_url + endpointurl,true)
@@ -90,8 +92,7 @@ function FetchOrdersReceivedAllData (endpointurl,OriginalHtmlDiv,htmldiv)
                     for (id=0; id<=results.length;id++)
                     {
                         let currentlistindex = results[listindex]
-                        // CreateDynamicList (currentlistindex)
-                        CreateDynamicDropdownList (currentlistindex,id,OriginalHtmlDiv,htmldiv)
+                        CreateDynamicDropdownList (currentlistindex,id,OuterHtmlDiv)
                         listindex ++;
                     }
                 }

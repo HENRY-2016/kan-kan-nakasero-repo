@@ -14,9 +14,9 @@
 <script>
     function do_logic ()
     {
-        Hide_view_orders_divs ()
+        // Hide_view_orders_divs ()
         // dolist ()
-        fetch_orders_received_all_data ('subdealer_orders_view_all_endpoint')
+        // fetch_orders_received_all_data ('subdealer_orders_view_all_endpoint')
         // Load_subdealer_Offline_Data ();
         //Creatednamicul ()
         // CreateDynamicReadMore_ReadLess ()
@@ -25,7 +25,7 @@
 </script>
 
 </head>
-<body class="main_body" onload=" do_logic () ">
+<body class="main_body" onload=" HideAllVeiwDivs () ">
 <div id="main-header">
     <div  id= "Navigetion" class=" w3-light-grey header">
         <!-- ======= CLOSE ====== -->
@@ -126,7 +126,7 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
 </div> <!-- main-header-->
 <div id="main-body" > <!-- Begin main-body div -->
     <br><br>
-    <button class="menu_btns fontstyles" onclick="Show_delete_menu_panel_div ()">Veiwing :: Orders </button>
+    <button class="menu_btns view-font-styles" onclick="Show_delete_menu_panel_div ()">Veiwing :: Orders </button>
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -135,7 +135,7 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
     <button class="main-acordination-btns">Prices </button>
     <div class="acordination-contents-area"><br>
         <center>
-            <button onclick="fetch_subdealer_names_and_prices ('plascon_subdealer_names_and_prices_endpoint','subdealer-prices-tbody','subdealer-prices-div')" class="show-btn entries_page_fonts"  >Show</button>
+            <button onclick="fetch_subdealer_names_and_prices ('plascon_subdealer_names_and_prices_endpoint','subdealer-prices-tbody','subdealer-prices-div')" class="show-btn view-font-styles"  >Show</button>
                 <div id="subdealer-prices-div">
                         <table class=" w3-bordered user-scrolling-table">
                             <tbody id="subdealer-prices-tbody"></tbody>
@@ -193,7 +193,7 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
                     <script>
                         function close_popup_window (){document.getElementById('id01').style.display='none';document.getElementById("products-form").reset();}
                     </script>
-                    <span onclick="close_popup_window ()" class=" close-x fontstyles">X</span>
+                    <span onclick="close_popup_window ()" class=" close-x view-font-styles">X</span>
                     <div id="order-inputs" class="header-order-modal">
                         <center>
                             <form id="products-form" >
@@ -214,24 +214,140 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <button class="main-acordination-btns">Received Orders </button>
+    <button class="main-acordination-btns">Subdealer :: Orders </button>
     <div class="acordination-contents-area"><br>
-        <button  class="grand-child-btn fontstyles">All</button><br><br>
-            <div id="plascon-original-view-all-div">
-                <button onclick="FetchOrdersReceivedAllData ('vieworders_subdealer_orders_view_all_endpoint','plascon-appending-view-all-div','plascon-orders-received-div')" class="show-btn  entries_page_fonts"  >Show</button>
-                <div id="plascon-orders-received-div"> </div>
-                <p id="plascon-appending-view-all-div"></p>
+        <!-- ===================================================== -->
+        <button onclick="ShowPlasconSubdealerViewAllDiv ()" class="orders-view-btn view-font-styles">All</button><br><br>
+            <div id="plascon-subdealer-view-all-div">
+                <button onclick="FetchOrdersReceivedAllData('vieworders_subdealer_orders_view_all_endpoint','outer-plascon-view-all-div','htmldiv-plascon-orders-received-div')" class="show-btn  view-font-styles"  >Show</button>
+                <div id="outer-plascon-view-all-div"> 
+                    <!-- <div id="htmldiv-plascon-orders-received-div" ></div> -->
+                </div>
                 <br><br>
             </div>
 
-        <!-- <button onclick="ShowOrdersReceivedViewFromToDiv ()" class="grand-child-btn fontstyles">From To </button><br><br>
-            <div id="orders-view-from-to-div" >
-                <button onclick="OrdersView ('orders_view_from_to','orders-show-from-to-tbody','orders-view-from-to-div')" class="show-btn  entries_page_fonts"  >Show</button>
-                        <table class=" w3-bordered user-scrolling-table">
-                            <tbody id="orders-show-from-to-tbody"></tbody>
+            <!-- ===================================================== -->
+        <button onclick="show_luwombo_orders_received_view_date_div ()" class="orders-view-btn view-font-styles">By Date</button> <br><br>
+            <div id="plascon-subdealer-orders-by-date-div">
+                <button onclick="show_luwombo_orders_received_date_today_grand_child_div ()" class="view-btns-grand-child   view-font-styles">Today</button>
+                    <div id="plascon-subdealer-by-date-today-grand-child-div" >
+                        <button onclick=" fetch_luwombo_orders_received_date_today_data ()  " class="agency-show-btn view-font-styles"  >Show</button>
+                        <div id="luwombo-orders-received-loader-date-today" class="loader"></div>
+                            <div id="luwombo-orders-view-by-date-today-div">
+                                <center>
+                                    <table class=" w3-bordered user-scrolling-table">
+                                        <tbody id="luwombo-date-today-tbody"></tbody>
+                                    </table>
+                                </center>
+                            </div>
+                        <button onclick="close_luwombo_received_date_today_grand_child_div ()" class="close-child-btn view-font-styles" >Close</button><br><br>
+                    </div><br><br> 
+                <!-- .......................................... -->
+                 <button onclick="show_luwombo_orders_received_date_grand_child_div ()" class="view-btns-grand-child view-font-styles">Date</button>
+                    <div id="luwombo-orders-received-date-grand-child-div" >
+                        <form class="orders_from_to_form" id="luwombo-orders-date-date-form" >
+                            <label>Date</label>
+                            <input class="orders_view_form_input" type="date" name="date" onchange="fetch_luwombo_orders_received_date_date_data ()" ><br>
+                        </form>
+                        <button class="agency-show-btn view-font-styles"  ></button>
+                        <div id="luwombo-orders-received-loader-date-date" class="loader"></div>
+                        <div id="date-date-div" >
+                            <center>
+                            <table class=" w3-bordered user-scrolling-table">
+                                <tbody id="luwombo-date-date-tbody"></tbody>
+                            </table>
+                            </center>
+                        </div>
+                        <button onclick="close_luwombo_orders_received_date_grand_child_div ()" class="close-child-btn view-font-styles">Close</button>
+                    </div><br><br>
+            </div>
+            <!-- ===================================================== -->
+
+            <!-- <button onclick="show_luwombo_orders_received_from_to_week_div ()" class="orders-view-btn view-font-styles">From -- To</button> <br><br>
+            <div id="luwombo-orders-received-from-to-div">
+                <button  onclick="show_luwombo_orders_received_from_to_grand_child_div ()" class="view-btns-grand-child view-font-styles">All</button>
+                <div id="luwombo-orders-received-from-to-all-grand-child-div">
+                    <form class="orders_from_to_form" id="luwombo-from-to-form">
+                        <table>
+                            <tr>
+                                <td>
+                                    <label> From </label>
+                                    <input class="orders_view_form_input" type="date" autocomplete="off" name="from">
+                                </td>
+                                <td>
+                                    <label> To </label>
+                                    <input class="orders_view_form_input" type="date" autocomplete="off" name="to">
+                                </td>
+                            </tr>
                         </table>
+                    </form>
+                <div id="from-to-div">
+                    <button onclick="fetch_luwombo_orders_received_from_to_all_data () " class="agency-show-btn view-font-styles"  >Show</button>
+                        <div id="luwombo-orders-received-loader-from-to-all" class="loader"></div>
+                        <center>
+                        <table class=" w3-bordered user-scrolling-table">
+                            <tbody id="luwombo-from-to-all-tbody"></tbody>
+                        </table>
+                        </center>
+                    <button onclick="close_luwombo_orders_received_from_to_grand_child_div ()" class="close-child-btn view-font-styles" >Close</button>
+                </div>
+                </div><br><br><br>
             </div> -->
-    </div>
+
+            <!-- ===================================================== -->
+            <!-- <button onclick="show_luwombo_orders_received_view_last_week_div ()" class=" orders-view-btn view-font-styles">Last Week</button> <br><br>
+            <div id="luwombo-orders-received-last-week-div">
+                <button onclick="show_luwombo_orders_received_last_week_all_grand_child_div ()" class="view-btns-grand-child   view-font-styles">All</button>
+                    <div id="luwombo-orders-received-last-week-all-grand-child-div">
+                        <button onclick="fetch_luwombo_orders_received_last_week_all_data ()  " class="agency-show-btn view-font-styles" >Show</button><br><br>
+                            <div id="luwombo-orders-received-loader-last-week-all" class="loader"></div>
+                            <div id="luwombo-last-week-all-div" >
+                                <center>
+                                <table class=" w3-bordered user-scrolling-table">
+                                    <tbody id="luwombo-last-week-all-tbody"></tbody>
+                                </table>
+                                </center>
+                            </div>
+                        <button onclick="close_luwombo_orders_received_last_week_all_grand_child_div ()"  class="close-child-btn view-font-styles" >Close</button><br><br>
+                    </div><br><br>
+                </div> -->
+
+            <!-- ===================================================== -->
+            <!-- <button onclick="show_luwombo_orders_received_this_month_grand_child_div ()" class="orders-view-btn view-font-styles">This Month</button> <br><br>
+            <div id="luwombo-orders-received-this-month-div">
+                <button  onclick="show_luwombo_orders_received_this_month_all_grand_child_div()" class="view-btns-grand-child   view-font-styles">All</button>
+                    <div id="luwombo-orders-received-this-month-all-grand-child-div">
+                        <button onclick=" fetch_luwombo_orders_received_this_month_all_data ()"   class="agency-show-btn view-font-styles"  >Show</button>
+                    <div id="luwombo-orders-received-loader-this-month-all" class="loader"></div>
+                        <div id="luwombo-this-month-all-div">
+                            <center>
+                            <table class=" w3-bordered user-scrolling-table">
+                                <tbody id="luwombo-this-month-all-tbody"></tbody>
+                            </table>
+                            </center>
+                        </div>
+                        <button onclick="close_luwombo_orders_received_this_month_all_grand_child_div ()"  class="close-child-btn view-font-styles" >Close</button><br><br>
+                    </div><br><br>
+            </div> -->
+            <!-- ===================================================== -->
+            <!-- <button onclick="show_luwombo_orders_received_view_last_month_div ()" class="orders-view-btn  view-font-styles">Last Month</button> <br><br>
+            <div id="luwombo-orders-received-last-month-div">
+            <button onclick="show_luwombo_orders_received_last_month_all_grand_child_div ()" class="view-btns-grand-child   view-font-styles">All</button><br><br>
+                <div id="luwombo-orders-received-last-month-by-all-grand-child-div">
+                    <button onclick="fetch_luwombo_orders_received_last_month_all_data ()  " class="agency-show-btn view-font-styles"  >Show</button>
+                        <div id="luwombo-orders-received-loader-last-month-all" class="loader"></div>
+                        <div id="luwombo-last-month-all-div">
+                            <center>
+                            <table class=" w3-bordered user-scrolling-table">
+                                <tbody id="luwombo-last-month-all-tbody"></tbody>
+                            </table>
+                            </center>
+                        </div>
+                    <button onclick="close_luwombo_orders_received_last_month_all_grand_child_div ()" class="close-child-btn  view-font-styles" >Close</button><br><br>
+                </div>
+            </div>
+        </div> --> 
+    </div> <!-- End of acordination-contents-area -->
     <button class="main-acordination-btns"> </button>
 
 </div>
