@@ -18,10 +18,7 @@ function ShowCloseDynamicDropdownList (id)
 
 function CreateDynamicDropdownList  (listoflists,id,OuterHtmlDiv)
 {
-    // let OriginalDiv = document.getElementById(htmldiv)
-    // OriginalDiv.innerHTML = " ";
     let HtmlDiv = document.getElementById(OuterHtmlDiv);
-    // HtmlDiv.innerHTML = ' ';
     let DivContainer = document.createElement('div');
     let DropdownHoverDiv = document.createElement('div');
     let ButtonTxt = document.createElement('button') //document.createElement('label');
@@ -78,7 +75,7 @@ function CreateDynamicDropdownList  (listoflists,id,OuterHtmlDiv)
 */
 
 // ==================
-function FetchOrdersReceivedAllData (endpointurl,OuterHtmlDiv)
+function FetchOrdersDataFromServer (endpointurl,OuterHtmlDiv)
 {
     let req = new XMLHttpRequest();
     req.open('post', ordersreceived_url + endpointurl,true)
@@ -88,6 +85,7 @@ function FetchOrdersReceivedAllData (endpointurl,OuterHtmlDiv)
             if (! results || !results.length){alert("No results found")}
             else
                 {
+                    document.getElementById(OuterHtmlDiv).innerText = "";
                     let listindex = 0;
                     for (id=0; id<=results.length;id++)
                     {
@@ -101,6 +99,30 @@ function FetchOrdersReceivedAllData (endpointurl,OuterHtmlDiv)
     // setTimeout(save_show_all_data, seconds)
 }
 
+
+function FetchFormOrdersDataFromServer (endpointurl,OuterHtmlDiv)
+{
+    let req = new XMLHttpRequest();
+    req.open('post', ordersreceived_url + endpointurl,true)
+    req.onload = function ()
+        {
+            let results = JSON.parse(this.responseText);
+            if (! results || !results.length){alert("No results found")}
+            else
+                {
+                    document.getElementById(OuterHtmlDiv).innerText = "";
+                    let listindex = 0;
+                    for (id=0; id<=results.length;id++)
+                    {
+                        let currentlistindex = results[listindex]
+                        CreateDynamicDropdownList (currentlistindex,id,OuterHtmlDiv)
+                        listindex ++;
+                    }
+                }
+        }
+        let date = new FormData(document.getElementById('orders-date-date-form'));
+        req.send(date);
+}
 
 // ============================= view Today
 
