@@ -399,7 +399,7 @@ padding: 12px 12px 12px 12px;
 .show-btn
 {
     
-    width: 50%;
+    width: 30%;
     background-color: blue;
     height:35px;
     border-radius:50px;
@@ -422,8 +422,8 @@ padding: 12px 12px 12px 12px;
 }
 .form-from-to-form
 {
-    font-family: 'Open Sans Condensed', arial, sans;
-	width: 300px;
+    font-family: 'Times New Roman', arial, sans;
+	width: 320px;
 	padding: 30px;
 	background: #FFFFFF;
 	/* margin: 50px auto; */
@@ -441,7 +441,7 @@ padding: 12px 12px 12px 12px;
 	-moz-box-sizing: border-box;
 	outline: none;
 	display: block;
-	width: 130px;
+	width: 140px;
 	padding: 7px;
     border-radius: 25px;
 	border: 2px solid blue;
@@ -532,16 +532,6 @@ padding: 12px 12px 12px 12px;
     overflow: auto;
     height: 350px;
     width: 95%;
-}
-
-
-.show-btn
-{
-    
-    width: 50%;
-    background-color: blue;
-    height:35px;
-    border-radius:50px;
 }
 
 /* ============================= ACORDINATION  ================ */

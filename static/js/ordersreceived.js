@@ -16,7 +16,7 @@ function ShowCloseDynamicDropdownList (id)
 
 }
 
-function CreateDynamicDropdownList  (listoflists,id,OuterHtmlDiv)
+function CreateDynamicDropdownListWithArrayLengthOfSix  (listoflists,id,OuterHtmlDiv)
 {
     let HtmlDiv = document.getElementById(OuterHtmlDiv);
     let DivContainer = document.createElement('div');
@@ -31,7 +31,8 @@ function CreateDynamicDropdownList  (listoflists,id,OuterHtmlDiv)
     ButtonTxt.setAttribute('class','button-dropdown-content-js')
     DropdownHoverDiv.setAttribute('class','w3-dropdown-click'); //w3-dropdown-hover
     DropdownContentDiv.setAttribute('class','dropdown-content-js')
-    DropdownContentDiv.setAttribute('id','contentlist'+(id));
+    // DropdownContentDiv.setAttribute('id','contentlist'+(id));
+    DropdownContentDiv.setAttribute('id',OuterHtmlDiv + (id));
     ListTxt.setAttribute('class','w3-bar-item w3-button')
     LabelTxt.setAttribute('class','label-txt-js')
     contentid = DropdownContentDiv.id
@@ -65,6 +66,53 @@ function CreateDynamicDropdownList  (listoflists,id,OuterHtmlDiv)
 }
 
 
+function CreateDynamicDropdownListWithArrayLengthOfNine  (listoflists,id,OuterHtmlDiv)
+{
+    let HtmlDiv = document.getElementById(OuterHtmlDiv);
+    let DivContainer = document.createElement('div');
+    let DropdownHoverDiv = document.createElement('div');
+    let ButtonTxt = document.createElement('button') //document.createElement('label');
+    let DropdownContentDiv = document.createElement('div')
+    let ListTxt = document.createElement('li');
+    let LabelTxt = document.createElement('label');
+
+    // Set attributs ...
+    DivContainer.setAttribute('class','w3-container')
+    ButtonTxt.setAttribute('class','button-dropdown-content-js')
+    DropdownHoverDiv.setAttribute('class','w3-dropdown-click'); //w3-dropdown-hover
+    DropdownContentDiv.setAttribute('class','dropdown-content-js')
+    DropdownContentDiv.setAttribute('id',OuterHtmlDiv + (id));
+    ListTxt.setAttribute('class','w3-bar-item w3-button')
+    LabelTxt.setAttribute('class','label-txt-js')
+    contentid = DropdownContentDiv.id
+    ButtonTxt.setAttribute('onclick' , 'ShowCloseDynamicDropdownList("'+contentid+'")')
+
+    // Define variables from array
+    name = listoflists[1]
+    number = listoflists[5]
+    amount = listoflists[3]
+    status = listoflists[7]
+    date = listoflists[4]
+    list = listoflists[6]
+
+
+    // Assign content of each to hmtl
+    stringfromlist = list.toString();// convert to string 
+    formatedlist =  stringfromlist.replace(/×/g,"<br>") //insert a <br> tag note:: × is different 4m x
+
+    ButtonTxt.innerHTML = name +" | " +amount;
+    ListTxt.innerHTML = formatedlist
+    LabelTxt.innerHTML = date+" | "+number+ " | "+ amount +" | "+status
+
+    // appendChild to ....
+    ListTxt.appendChild(LabelTxt);
+    DropdownContentDiv.appendChild(ListTxt)
+    ButtonTxt.appendChild(DropdownContentDiv);
+    DropdownHoverDiv.appendChild(ButtonTxt);
+    DivContainer.appendChild(DropdownHoverDiv);
+    HtmlDiv.appendChild(DivContainer);
+}
+
 
 /*
     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -75,8 +123,17 @@ function CreateDynamicDropdownList  (listoflists,id,OuterHtmlDiv)
 */
 
 // ==================
-function FetchOrdersDataFromServer (endpointurl,OuterHtmlDiv)
+function FetchOrdersDataFromServerWithArrayLengthOfSix (endpointurl,OuterHtmlDiv)
 {
+    /*
+        Called on ::
+            outer-plascon-view-by-all-div
+            outer-plascon-view-by-date-div
+            outer-plascon-view-by-date-today-div
+            outer-plascon-view-by-this-month-div
+            outer-plascon-view-by-last-month-div
+
+    */
     let req = new XMLHttpRequest();
     req.open('post', ordersreceived_url + endpointurl,true)
     req.onload = function ()
@@ -90,7 +147,7 @@ function FetchOrdersDataFromServer (endpointurl,OuterHtmlDiv)
                     for (id=0; id<=results.length;id++)
                     {
                         let currentlistindex = results[listindex]
-                        CreateDynamicDropdownList (currentlistindex,id,OuterHtmlDiv)
+                        CreateDynamicDropdownListWithArrayLengthOfSix (currentlistindex,id,OuterHtmlDiv)
                         listindex ++;
                     }
                 }
@@ -99,9 +156,13 @@ function FetchOrdersDataFromServer (endpointurl,OuterHtmlDiv)
     // setTimeout(save_show_all_data, seconds)
 }
 
-
-function FetchFormOrdersDataFromServer (endpointurl,OuterHtmlDiv)
+function FetchFormOrdersDataFromServerWithArrayLengthOfSix_Date (endpointurl,OuterHtmlDiv,OrdersFormId)
 {
+    /*
+        Called on 
+            outer-plascon-view-by-date-date-div only
+                coz of a form 
+    */
     let req = new XMLHttpRequest();
     req.open('post', ordersreceived_url + endpointurl,true)
     req.onload = function ()
@@ -115,351 +176,72 @@ function FetchFormOrdersDataFromServer (endpointurl,OuterHtmlDiv)
                     for (id=0; id<=results.length;id++)
                     {
                         let currentlistindex = results[listindex]
-                        CreateDynamicDropdownList (currentlistindex,id,OuterHtmlDiv)
+                        CreateDynamicDropdownListWithArrayLengthOfSix (currentlistindex,id,OuterHtmlDiv)
                         listindex ++;
                     }
                 }
         }
-        let date = new FormData(document.getElementById('orders-date-date-form'));
+        let date = new FormData(document.getElementById(OrdersFormId));
         req.send(date);
 }
 
-// ============================= view Today
 
-function fetch_subdealer_orders_received_date_today_data ()
+function FetchFormOrdersDataFromServerWithArrayLengthOfNine (endpointurl,OuterHtmlDiv,OrdersFormId)
 {
-    document.getElementById("subdealer-orders-received-loader-date-today").style.display="block";
-    setTimeout(subdealer_orders_view_by_date_today,loader_seconds)
-}
-function subdealer_orders_view_by_date_today ()
-{
-    document.getElementById("subdealer-orders-received-loader-date-today").style.display="none";
+    /*
+        Called on
+            outer-plascon-view-by-from-to-div
+            
+    */
     let req = new XMLHttpRequest();
-    req.open('post', ordersreceived_url+'subdealer_orders_view_by_date_today',true)
+    req.open('post', ordersreceived_url + endpointurl,true)
     req.onload = function ()
         {
             let results = JSON.parse(this.responseText);
-            if (! results || !results.length)
-                {alert("No results found")}
+            if (! results || !results.length){alert("No results found")}
             else
                 {
-                    let tbody = document.getElementById('subdealer-date-today-tbody');
-                    tbody.innerHTML = ' ';
-
-                    // draw table
-                    let td,tr;
-                    // add table headings
-                    let th_names = new Array ();
-                    th_names.push(["Name","Avenue","Location", "Contacts","Price","Date","Time","Staff"]);
-                    let columns_to_count = th_names[0].length;
-                    row = tbody.insertRow(-1); 
-                    for (let looper =0; looper<columns_to_count; ++looper)
-                        {
-                            let headerNames = document.createElement("th");
-                            headerNames.className='js_table_headers'
-                            headerNames.innerHTML = th_names[0][looper];
-                            row.appendChild(headerNames)
-                        }
-
-                    for (let table_row = 0; table_row < results.length; ++table_row)
-                        {
-                            tr = document.createElement('tr');
-                            tr.className='js_table_row';
-                            for (let table_data = 0; table_data< (results[table_row].length);++table_data)
-                                {
-                                    td = document.createElement('td');
-                                    td.setAttribute("align", "center"); 
-                                    td.innerHTML = results[table_row][table_data];
-                                    tr.appendChild(td)
-                                }
-                                tbody.appendChild(tr)
-                        }
+                    document.getElementById(OuterHtmlDiv).innerText = "";
+                    let listindex = 0;
+                    for (id=0; id<=results.length;id++)
+                    {
+                        let currentlistindex = results[listindex]
+                        CreateDynamicDropdownListWithArrayLengthOfNine (currentlistindex,id,OuterHtmlDiv)
+                        listindex ++;
+                    }
                 }
         }
-        let data = document.getElementById('orders-view-by-date-today-div');
-        req.send(data); 
-        setTimeout (save_by_date_today_data,seconds);       
+        let date = new FormData(document.getElementById(OrdersFormId));
+        req.send(date);
 }
 
-// ============================= >>> date date
-function fetch_subdealer_orders_received_date_date_data ()
+
+function FetchFormOrdersDataFromServerWithArrayLengthOfNine_LastWeek (endpointurl,OuterHtmlDiv)
 {
-    document.getElementById("subdealer-orders-received-loader-date-date").style.display="block";
-    setTimeout(subdealer_orders_view_by_date_date,loader_seconds)
-}
-function subdealer_orders_view_by_date_date ()
-{
-    document.getElementById("subdealer-orders-received-loader-date-date").style.display="none";
+    /*
+        Called on
+            outer-plascon-view-by-last-week-div
+            
+    */
     let req = new XMLHttpRequest();
-    req.open('post', ordersreceived_url+'subdealer_orders_view_by_date_date',true)
+    req.open('post', ordersreceived_url + endpointurl,true)
     req.onload = function ()
         {
             let results = JSON.parse(this.responseText);
-            if (! results || !results.length)
-                {alert("No results found")}
+            if (! results || !results.length){alert("No results found")}
             else
                 {
-                    let tbody = document.getElementById('subdealer-date-date-tbody');
-                    tbody.innerHTML = ' ';
-                    let td,tr;
-                    let th_names = new Array ();
-                    th_names.push(["Name","Avenue","Location", "Contacts","Price","Date","Time","Staff"]);
-                    let columns_to_count = th_names[0].length;
-                    row = tbody.insertRow(-1); 
-                    for (let looper =0; looper<columns_to_count; ++looper)
-                        {
-                            let headerNames = document.createElement("th");
-                            headerNames.className='js_table_headers'
-                            headerNames.innerHTML = th_names[0][looper];
-                            row.appendChild(headerNames)
-                        }
-
-                    for (let table_row = 0; table_row < results.length; ++table_row)
-                        {
-                            tr = document.createElement('tr');
-                            tr.className='js_table_row';
-                            for (let table_data = 0; table_data< (results[table_row].length);++table_data)
-                                {
-                                    td = document.createElement('td');
-                                    td.setAttribute("align", "center"); 
-                                    td.innerHTML = results[table_row][table_data];
-                                    tr.appendChild(td)
-                                }
-                                tbody.appendChild(tr)
-                        }
+                    document.getElementById(OuterHtmlDiv).innerText = "";
+                    let listindex = 0;
+                    for (id=0; id<=results.length;id++)
+                    {
+                        let currentlistindex = results[listindex]
+                        CreateDynamicDropdownListWithArrayLengthOfNine (currentlistindex,id,OuterHtmlDiv)
+                        listindex ++;
+                    }
                 }
         }
-        let date = new FormData(document.getElementById('orders-date-date-form'));
-        req.send(date);        
-        setTimeout(save_date_date_data,seconds);
-}
-
-function fetch_subdealer_orders_received_from_to_all_data () 
-{
-    document.getElementById("subdealer-orders-received-loader-from-to-all").style.display="block";
-    setTimeout(subdealer_orders_from_to_all,loader_seconds)
-}
-function subdealer_orders_from_to_all ()
-{
-    document.getElementById("subdealer-orders-received-loader-from-to-all").style.display="none";
-    let req = new XMLHttpRequest();
-    req.open('post', ordersreceived_url+'subdealer_orders_from_to_all',true)
-    req.onload = function ()
-        {
-            let results = JSON.parse(this.responseText);
-            if (! results || !results.length)
-                {alert("No results found")}
-            else
-                {
-                    let tbody = document.getElementById('subdealer-from-to-all-tbody');
-                    tbody.innerHTML = ' ';
-                    let td,tr;
-                    let th_names = new Array ();
-                    th_names.push(["Name","Avenue","Location", "Contacts","Price","Date","Time","Staff"]);
-                    let columns_to_count = th_names[0].length;
-                    row = tbody.insertRow(-1); 
-                    for (let looper =0; looper<columns_to_count; ++looper)
-                        {
-                            let headerNames = document.createElement("th");
-                            headerNames.className='js_table_headers'
-                            headerNames.innerHTML = th_names[0][looper];
-                            row.appendChild(headerNames)
-                        }
-
-                    for (let table_row = 0; table_row < results.length; ++table_row)
-                        {
-                            tr = document.createElement('tr');
-                            tr.className='js_table_row';
-                            for (let table_data = 1; table_data< (results[table_row].length-1);++table_data)
-                                {
-                                    td = document.createElement('td');
-                                    td.setAttribute("align", "center"); 
-                                    td.innerHTML = results[table_row][table_data];
-                                    tr.appendChild(td)
-                                }
-                                tbody.appendChild(tr)
-                        }
-                }
-        }
-        let date =  new FormData(document.getElementById('subdealer-from-to-form'));
-        req.send(date);        
-        setTimeout(save_from_to,seconds);
-}
-// ======================================
-
-// +++++++++++++++++++++++++++++++++++++++>>>
-function fetch_subdealer_orders_received_last_week_all_data ()
-{
-    document.getElementById("subdealer-orders-received-loader-last-week-all").style.display="block";
-    setTimeout(subdealer_orders_last_week_all,loader_seconds)
-}
-
-function subdealer_orders_last_week_all ()
-{
-    document.getElementById("subdealer-orders-received-loader-last-week-all").style.display="none";
-    let req = new XMLHttpRequest();
-    req.open('post', ordersreceived_url+'subdealer_orders_last_week_all_data',true)
-    req.onload = function ()
-        {
-            document.getElementById("subdealer-orders-received-loader-last-week-all").style.display="none";
-            let results = JSON.parse(this.responseText);
-
-            if (! results || !results.length)
-                {alert("No results found")}
-            else
-                {
-                    let tbody = document.getElementById('subdealer-last-week-all-tbody');
-                    tbody.innerHTML = ' ';
-                    let td,tr;
-                    let th_names = new Array ();
-                    th_names.push(["Name","Avenue","Location", "Contacts","Price","Date","Time","Staff"]);
-                    let columns_to_count = th_names[0].length;
-                    row = tbody.insertRow(-1); 
-                    for (let looper =0; looper<columns_to_count; ++looper)
-                        {
-                            let headerNames = document.createElement("th");
-                            headerNames.className='js_table_headers'
-                            headerNames.innerHTML = th_names[0][looper];
-                            row.appendChild(headerNames)
-                        }
-
-                    for (let table_row = 0; table_row < results.length; ++table_row)
-                        {
-                            tr = document.createElement('tr');
-                            tr.className='js_table_row';
-                            for (let table_data = 1; table_data< (results[table_row].length-1);++table_data)
-                                {
-                                    td = document.createElement('td');
-                                    td.setAttribute("align", "center"); 
-                                    td.innerHTML = results[table_row][table_data];
-                                    tr.appendChild(td)
-                                }
-                                tbody.appendChild(tr)
-                        }
-                }
-        }
-        let date = document.getElementById('last-week-all-grand-child-div');
-        req.send(date);        
-        setTimeout(save_show_last_week_all,seconds);
-}
-
-function fetch_subdealer_orders_received_this_month_all_data ()
-{
-    document.getElementById("subdealer-orders-received-loader-this-month-all").style.display="block";
-    setTimeout(subdealer_orders_this_month_all,loader_seconds)
-}
-
-function subdealer_orders_this_month_all ()
-{
-    document.getElementById("subdealer-orders-received-loader-this-month-all").style.display="none";
-    let req = new XMLHttpRequest();
-    req.open('post', ordersreceived_url+'subdealer_orders_this_month_all_data',true)
-    req.onload = function ()
-        {
-            let results = JSON.parse(this.responseText);
-
-            if (! results || !results.length)
-                {alert("No results found")}
-            else
-                {
-                    let tbody = document.getElementById('subdealer-this-month-all-tbody');
-                    tbody.innerHTML = ' ';
-
-                    // draw table
-                    let td,tr;
-                    // add table headings
-                    let th_names = new Array ();
-                    th_names.push(["Name","Avenue","Location", "Contacts","Price","Date","Time","Staff"]);
-                    let columns_to_count = th_names[0].length;
-                    row = tbody.insertRow(-1); 
-                    for (let looper =0; looper<columns_to_count; ++looper)
-                        {
-                            let headerNames = document.createElement("th");
-                            headerNames.className='js_table_headers'
-                            headerNames.innerHTML = th_names[0][looper];
-                            row.appendChild(headerNames)
-                        }
-
-                    for (let table_row = 0; table_row < results.length; ++table_row)
-                        {
-                            // class="w3-hover-black"
-                            tr = document.createElement('tr');
-                            tr.className='js_table_row';
-                            // tr.className='js_table';
-                            //draw td
-                            for (let table_data = 0; table_data< (results[table_row].length);++table_data)
-                                {
-                                    td = document.createElement('td');
-                                    td.setAttribute("align", "center"); 
-
-                                    // put in data
-                                    td.innerHTML = results[table_row][table_data];
-                                    tr.appendChild(td)
-                                }
-                                tbody.appendChild(tr)
-                        }
-                }
-        }
-        let date = document.getElementById('this-month-all-grand-child-div');
-        req.send(date);        
-        setTimeout(save_show_this_month_all,seconds);
-}
-
-
-// +++++++++++++++++++++++++++++++++++++++>>>
-
-function fetch_subdealer_orders_received_last_month_all_data ()
-{
-    document.getElementById("subdealer-orders-received-loader-last-month-all").style.display="block";
-    setTimeout(subdealer_orders_last_month_all,loader_seconds)
-}
-
-function subdealer_orders_last_month_all ()
-{
-    document.getElementById("subdealer-orders-received-loader-last-month-all").style.display="none";
-    let req = new XMLHttpRequest();
-    req.open('post', ordersreceived_url+'subdealer_orders_last_month_all_data',true)
-    req.onload = function ()
-        {
-            let results = JSON.parse(this.responseText);
-
-            if (! results || !results.length)
-                {alert("No results found")}
-            else
-                {
-                    let tbody = document.getElementById('subdealer-last-month-all-tbody');
-                    tbody.innerHTML = ' ';
-                    let td,tr;
-                    let th_names = new Array ();
-                    th_names.push(["Name","Avenue","Location", "Contacts","Price","Date","Time","Staff"]);
-                    let columns_to_count = th_names[0].length;
-                    row = tbody.insertRow(-1); 
-                    for (let looper =0; looper<columns_to_count; ++looper)
-                        {
-                            let headerNames = document.createElement("th");
-                            headerNames.className='js_table_headers'
-                            headerNames.innerHTML = th_names[0][looper];
-                            row.appendChild(headerNames)
-                        }
-
-                    for (let table_row = 0; table_row < results.length; ++table_row)
-                        {
-                            tr = document.createElement('tr');
-                            tr.className='js_table_row';
-                            for (let table_data = 0; table_data< (results[table_row].length);++table_data)
-                                {
-                                    td = document.createElement('td');
-                                    td.setAttribute("align", "center"); 
-                                    td.innerHTML = results[table_row][table_data];
-                                    tr.appendChild(td)
-                                }
-                                tbody.appendChild(tr)
-                        }
-                }
-        }
-        let date = document.getElementById('last-month-all-grand-child-div');
-        req.send(date);        
-        setTimeout(save_show_last_month_all,seconds);
+        req.send(date);
 }
 
 // ========================================================================

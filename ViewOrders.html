@@ -124,6 +124,7 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
 </script>
 
 </div> <!-- main-header-->
+
 <div id="main-body" > <!-- Begin main-body div -->
     <br><br>
     <button class="menu_btns view-font-styles" onclick="Show_delete_menu_panel_div ()">Veiwing :: Orders </button>
@@ -147,68 +148,88 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-    <button class="main-acordination-btns">New Order </button>
+    <button class="main-acordination-btns">Retail :: Orders </button>
     <div class="acordination-contents-area"><br>
-        <div class="order-input-div">
-            <center>
-                <form autocomplete="off" id="products-form">
-                    <label class="input-discription-labels">product type</label><br>
-                    <div class="autocomplete">
-                        <input id="type-input-id" type="text" name="paint_name" placeholder="Type first letter" class="paint-name order-inputs">
-                    </div><br>
-                    <label class="input-discription-labels">select size</label>
-                    <select id="size-input-id" onchange="DisplayCostPrice ('type-input-id','size-input-id','cost-price-id')" name="paint_name" id="size-id" placeholder="Size" class="paint-name order-inputs">
-                        <option></option>
-                        <option value="1ltr" >1 ltr</option>
-                        <option value="4ltrs" >4 ltrs</option>
-                        <option value="20ltrs" >20 ltrs</option>
-                    </select>
-                    <label class="input-discription-labels">colour name</label>
-                    <select id="colour-input-id" placeholder="Colour" class="paint-name order-inputs"><option></option></select>
-                    <input  id="qty-input-id" class="order-inputs" type="text" placeholder="Quantity"  name="paint_name" />
-                    <input id="cost-price-id"  readonly class="order-inputs" type="text"  name="paint_name" placeholder="Cost" />
-                    <input id="total-input-id" readonly class="subtotalinputs order-inputs" name="paint_name" placeholder="Total" type="text"/>
-                </form>
-                <button onclick="CreatCustomerList('type-input-id','size-input-id','colour-input-id','qty-input-id','cost-price-id','total-input-id','un-ordered-list-id')" class="add-btn-order-modal">Add</button>
-            </center>
-            <center><label>Customer list</label></center>
-                <ul id="un-ordered-list-id"></ul>
-            <center>
-                <form id="customer-info-form">
-                    <br>
-                    <input  id="name" class="order-inputs" type="text" placeholder="Customer Name will be done automatially" />
-                    <input  id="contact" class="order-inputs" type="text" placeholder="Contacts will be done automatially"  />
-                    <!-- <input id="amount-id-1"  class="order-inputs " type="date"  name="paint_name" /> -->
-                    <input id="final-total-id" class="subtotalinputs order-inputs" placeholder="Final Total" type="text"/>
-                </form>
-                <button class="next-to-payment-btn" onclick="document.getElementById('id01').style.display='block'" >Next</button>
-            </center>
-        </div>
-    </div>
-                        
-    <div id="id01" class="w3-modal" >
-            <div class="w3-modal-content">
-                <div class="w3-container">
-                    <br>
-                    <script>
-                        function close_popup_window (){document.getElementById('id01').style.display='none';document.getElementById("products-form").reset();}
-                    </script>
-                    <span onclick="close_popup_window ()" class=" close-x view-font-styles">X</span>
-                    <div id="order-inputs" class="header-order-modal">
-                        <center>
-                            <form id="products-form" >
-                                <label class="process-payments-labels">Process Payment </label><br>
-                                <label class="process-payments-labels" >Amount :: <span id="amountspan"> </span></label><br>
-                                <label class="process-payments-labels" >Charges :: <span id="chargesspan"> </span></label><br>
-                                <label class="process-payments-labels" >Total :: <span id="totalspan"> </span></label><br>
-                                <input class="order-inputs" type="text" placeholder="Amount"  name="paint_name" />
-                            </form>
-                            <button class="next-to-payment-btn" onclick="SubmiteData ('orders_subdealer_order_post')">Pay</button>
-                        </center>
-                    </div>
-                </div>
+        <!-- ===================================================== -->
+        <center><button onclick="ShowPlasconRetailViewAllDiv ()" class="orders-view-btn view-font-styles">All</button></center><br><br>
+            <div id="plascon-retail-view-all-div">
+                <center><button onclick="FetchOrdersDataFromServerWithArrayLengthOfSix ('vieworders_retail_orders_view_all_endpoint','outer-retail-plascon-view-by-all-div')" class="show-btn  view-font-styles">Show</button></center>
+                <div id="outer-retail-plascon-view-by-all-div"></div>
+                <br><br>
             </div>
+            <!-- ===================================================== -->
+        <center><button onclick="ShowPlasconRetailOrdersByDateDiv ()" class="orders-view-btn view-font-styles">By Date</button><br><br></center>
+        <div id="plascon-retail-orders-by-date-div">
+            <center><button onclick="ShowPlasconRetailByDateTodayGrandChildDiv ()" class="view-btns-grand-child view-font-styles">Today</button></center>
+                <div id="plascon-retail-by-date-today-grand-child-div"><br>
+                    <center><button onclick="FetchOrdersDataFromServerWithArrayLengthOfSix ('vieworders_retail_orders_view_by_date_today_endpoint','outer-retail-plascon-view-by-date-today-div')" class="show-btn  view-font-styles">Show</button></center>
+                    <div id="outer-retail-plascon-view-by-date-today-div"></div>
+                </div><br><br>
+
+            <center><button onclick="ShowPlasconRetailOrdersByDateDateDiv ()" class="view-btns-grand-child view-font-styles">Date</button></center>
+            <div id="plascon-retail-orders-by-date-date-div" >
+                <center>
+                    <form class="form-from-to-form" id="plascon-retail-date-form" >
+                        <label>Date</label>
+                        <input class="form-view-inputs" type="date" name="date" onchange="FetchFormOrdersDataFromServerWithArrayLengthOfSix_Date ('vieworders_retail_orders_view_by_date_date_endpoint','outer-retail-plascon-view-by-date-date-div','plascon-retail-date-form')" ><br>
+                    </form>
+                </center>
+                <div id="outer-retail-plascon-view-by-date-date-div"></div> 
+                <br>
+            </div>
+        </div><br><br>
+        <!-- ===================================================== -->
+        <center><button onclick="ShowPlasconRetailOrdersByFromToDiv ()" class="orders-view-btn view-font-styles">From -- To</button> </center><br><br> 
+        <div id="plascon-retail-orders-by-from-to-div">
+           <center>
+                <form class="form-from-to-form" id="plascon-retail-from-to-form">
+                    <table>
+                        <tr>
+                            <td>
+                                <label> From </label>
+                                <input class="form-view-inputs" type="date" autocomplete="off" name="from">
+                            </td>
+                            <td>
+                                <label> To </label>
+                                <input class="form-view-inputs" type="date" autocomplete="off" name="to">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </center> 
+            <div id="from-to-div">
+                <center><button onclick="FetchFormOrdersDataFromServerWithArrayLengthOfNine ('vieworders_retail_orders_view_by_from_to_endpoint','outer-retail-plascon-view-by-from-to-div','plascon-retail-from-to-form')" class="show-btn view-font-styles"  >Show</button></center>
+                <div id="outer-retail-plascon-view-by-from-to-div"></div>
+            </div>
+            <br><br><br>
+        </div> 
+    
+        <!-- ===================================================== -->
+        <center><button onclick="ShowPlasconRetailOrdersByLastWeekDiv ()" class=" orders-view-btn view-font-styles">Last Week</button> </center><br><br>
+        <div id="plascon-retail-orders-by-last-week-div">
+            <center><button onclick="FetchFormOrdersDataFromServerWithArrayLengthOfNine_LastWeek ('vieworders_retail_orders_view_by_last_week_endpoint','outer-retail-plascon-view-by-last-week-div')" class="show-btn view-font-styles" >Show</button><br><br></center>
+                    <div id="outer-retail-plascon-view-by-last-week-div"></div>
+                <br><br>
         </div>
+
+        <!-- ===================================================== -->
+        <center><button onclick="ShowPlasconRetailOrdersByThisMonthDiv ()" class="orders-view-btn view-font-styles">This Month</button></center> <br><br>
+        <div id="plascon-retail-orders-by-this-month-div">
+            <!-- <button  onclick="show_luwombo_orders_received_this_month_all_grand_child_div()" class="view-btns-grand-child   view-font-styles">All</button> -->
+            <center><button onclick="FetchOrdersDataFromServerWithArrayLengthOfSix ('vieworders_retail_orders_view_by_this_month_endpoint','outer-retail-plascon-view-by-this-month-div')"   class="show-btn view-font-styles"  >Show</button></center>
+                <div id="outer-retail-plascon-view-by-this-month-div"></div>
+                <br><br>
+        </div>
+        <!-- ===================================================== -->
+        <center><button onclick="ShowPlasconRetailOrdersByLastMonthDiv ()" class="orders-view-btn  view-font-styles">Last Month</button></center> <br><br>
+        <div id="plascon-retail-orders-by-last-month-div">
+            <center><button onclick="FetchOrdersDataFromServerWithArrayLengthOfSix ('vieworders_retail_orders_view_by_last_month_endpoint','outer-retail-plascon-view-by-last-month-div')"   class="show-btn view-font-styles"  >Show</button></center>
+                <div id="outer-retail-plascon-view-by-last-month-div"></div>
+                <br><br>
+        </div>
+            
+        </div> 
+    </div> <!-- End of acordination-contents-area -->
 
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
@@ -217,113 +238,91 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
     <button class="main-acordination-btns">Subdealer :: Orders </button>
     <div class="acordination-contents-area"><br>
         <!-- ===================================================== -->
-        <button onclick="ShowPlasconSubdealerViewAllDiv ()" class="orders-view-btn view-font-styles">All</button><br><br>
+        <center><button onclick="ShowPlasconSubdealerViewAllDiv ()" class="orders-view-btn view-font-styles">All</button></center><br><br>
             <div id="plascon-subdealer-view-all-div">
-                <button onclick="FetchOrdersDataFromServer('vieworders_subdealer_orders_view_all_endpoint','outer-plascon-view-by-all-div')" class="show-btn  view-font-styles"  >Show</button>
+                <center><button onclick="FetchOrdersDataFromServerWithArrayLengthOfSix ('vieworders_subdealer_orders_view_all_endpoint','outer-plascon-view-by-all-div')" class="show-btn  view-font-styles">Show</button></center>
                 <div id="outer-plascon-view-by-all-div"></div>
                 <br><br>
             </div>
-
             <!-- ===================================================== -->
-        <button onclick="ShowPlasconSubdealerOrdersByDateDiv ()" class="orders-view-btn view-font-styles">By Date</button> <br><br>
-            <div id="plascon-subdealer-orders-by-date-div">
-                <button onclick="show_luwombo_orders_received_date_today_grand_child_div ()" class="view-btns-grand-child   view-font-styles">Today</button>
-                    <div id="plascon-subdealer-by-date-today-grand-child-div" >
-                        <button onclick="FetchOrdersDataFromServer('vieworders_subdealer_orders_view_by_date_today_endpoint','outer-plascon-view-by-date-today-div')" class="show-btn  view-font-styles"  >Show</button>
-                            <div id="outer-plascon-view-by-date-today-div"></div>
-                            <br><br>
-                    </div><br><br> 
-                <!-- .......................................... -->
-                 <button onclick="show_luwombo_orders_received_date_grand_child_div ()" class="view-btns-grand-child view-font-styles">Date</button>
-                    <div id="luwombo-orders-received-date-grand-child-div" >
-                        <form class="form-from-to-form" id="plascon-date-form" >
-                            <label>Date</label>
-                            <input class="form-view-inputs" type="date" name="date" onchange="FetchFormOrdersDataFromServer ('vieworders_subdealer_orders_view_by_date_date_endpoint','outer-plascon-view-by-date-date-div','plascon-date-form')" ><br>
-                        </form>
-                        <div id="outer-plascon-view-by-date-date-div"></div>
-                        <!-- <button onclick="close_luwombo_orders_received_date_grand_child_div ()" class="close-child-btn view-font-styles">Close</button> -->
-                    </div><br><br>
-            </div>
-            <!-- ===================================================== -->
+        <center><button onclick="ShowPlasconSubdealerOrdersByDateDiv ()" class="orders-view-btn view-font-styles">By Date</button><br><br></center>
+        <div id="plascon-subdealer-orders-by-date-div">
+            <center><button onclick="ShowPlasconSubdealerByDateTodayGrandChildDiv ()" class="view-btns-grand-child view-font-styles">Today</button></center>
+                <div id="plascon-subdealer-by-date-today-grand-child-div"><br>
+                    <center><button onclick="FetchOrdersDataFromServerWithArrayLengthOfSix ('vieworders_subdealer_orders_view_by_date_today_endpoint','outer-plascon-view-by-date-today-div')" class="show-btn  view-font-styles">Show</button></center>
+                    <div id="outer-plascon-view-by-date-today-div"></div>
+                </div><br><br>
 
-            <button onclick="ShowPlasconSubdealerOrdersByFromToDiv ()" class="orders-view-btn view-font-styles">From -- To</button> <br><br> 
-            <div id="plascon-subdealer-orders-by-from-to-div">
-                <button  onclick="show_luwombo_orders_received_from_to_grand_child_div ()" class="view-btns-grand-child view-font-styles">All</button>
-                <div id="luwombo-orders-received-from-to-all-grand-child-div">
-                    <form class="form-from-to-form" id="plascon-from-to-form">
-                        <table>
-                            <tr>
-                                <td>
-                                    <label> From </label>
-                                    <input class="form-view-inputs" type="date" autocomplete="off" name="from">
-                                </td>
-                                <td>
-                                    <label> To </label>
-                                    <input class="form-view-inputs" type="date" autocomplete="off" name="to">
-                                </td>
-                            </tr>
-                        </table>
+            <center><button onclick="ShowPlasconSubdealerOrdersByDateDateDiv ()" class="view-btns-grand-child view-font-styles">Date</button></center>
+            <div id="plascon-subdealer-orders-by-date-date-div" >
+                <center>
+                    <form class="form-from-to-form" id="plascon-date-form" >
+                        <label>Date</label>
+                        <input class="form-view-inputs" type="date" name="date" onchange="FetchFormOrdersDataFromServerWithArrayLengthOfSix_Date ('vieworders_subdealer_orders_view_by_date_date_endpoint','outer-plascon-view-by-date-date-div','plascon-date-form')" ><br>
                     </form>
-                <div id="from-to-div">
-                    <button onclick="FetchFormOrdersDataFromServer ('vieworders_subdealer_orders_view_by_from_to_endpoint','outer-plascon-view-by-date-from-to-div','plascon-from-to-form')" class="show-btn view-font-styles"  >Show</button>
-                    <div id="outer-plascon-view-by-date-date-div"></div>
-                    <!-- <button onclick="close_luwombo_orders_received_from_to_grand_child_div ()" class="close-child-btn view-font-styles" >Close</button> -->
-                </div>
-                </div><br><br><br>
-            </div> 
-
-            <!-- ===================================================== -->
-            <button onclick="ShowPlasconSubdealerOrdersByLastWeekDiv ()" class=" orders-view-btn view-font-styles">Last Week</button> <br><br>
-            <div id="plascon-subdealer-orders-by-last-week-div">
-                <button onclick="show_luwombo_orders_received_last_week_all_grand_child_div ()" class="view-btns-grand-child   view-font-styles">All</button>
-                    <div id="luwombo-orders-received-last-week-all-grand-child-div">
-                        <button onclick="fetch_luwombo_orders_received_last_week_all_data ()  " class="show-btn view-font-styles" >Show</button><br><br>
-                            <div id="luwombo-orders-received-loader-last-week-all" class="loader"></div>
-                            <div id="luwombo-last-week-all-div" >
-                                <center>
-                                <table class=" w3-bordered user-scrolling-table">
-                                    <tbody id="luwombo-last-week-all-tbody"></tbody>
-                                </table>
-                                </center>
-                            </div>
-                        <!-- <button onclick="close_luwombo_orders_received_last_week_all_grand_child_div ()"  class="close-child-btn view-font-styles" >Close</button><br><br> -->
-                    </div><br><br>
-                </div>
-
-            <!-- ===================================================== -->
-            <button onclick="ShowPlasconSubdealerOrdersByThisMonthDiv ()" class="orders-view-btn view-font-styles">This Month</button> <br><br>
-            <div id="plascon-subdealer-orders-by-this-month-div">
-                <button  onclick="show_luwombo_orders_received_this_month_all_grand_child_div()" class="view-btns-grand-child   view-font-styles">All</button>
-                    <div id="luwombo-orders-received-this-month-all-grand-child-div">
-                        <button onclick=" fetch_luwombo_orders_received_this_month_all_data ()"   class="show-btn view-font-styles"  >Show</button>
-                    <div id="luwombo-orders-received-loader-this-month-all" class="loader"></div>
-                        <div id="luwombo-this-month-all-div">
-                            <center>
-                            <table class=" w3-bordered user-scrolling-table">
-                                <tbody id="luwombo-this-month-all-tbody"></tbody>
-                            </table>
-                            </center>
-                        </div>
-                        <!-- <button onclick="close_luwombo_orders_received_this_month_all_grand_child_div ()"  class="close-child-btn view-font-styles" >Close</button><br><br> -->
-                    </div><br><br>
+                </center>
+                <div id="outer-plascon-view-by-date-date-div"></div> 
+                <br>
             </div>
-            <!-- ===================================================== -->
-            <button onclick="ShowPlasconSubdealerOrdersByLastMonthDiv ()" class="orders-view-btn  view-font-styles">Last Month</button> <br><br>
-            <div id="plascon-subdealer-orders-by-last-month-div">
-                    <div id="outer-plascon-view-all-div"></div>
-                    <br><br>
+        </div><br><br>
+        <!-- ===================================================== -->
+        <center><button onclick="ShowPlasconSubdealerOrdersByFromToDiv ()" class="orders-view-btn view-font-styles">From -- To</button> </center><br><br> 
+        <div id="plascon-subdealer-orders-by-from-to-div">
+           <center>
+                <form class="form-from-to-form" id="plascon-from-to-form">
+                    <table>
+                        <tr>
+                            <td>
+                                <label> From </label>
+                                <input class="form-view-inputs" type="date" autocomplete="off" name="from">
+                            </td>
+                            <td>
+                                <label> To </label>
+                                <input class="form-view-inputs" type="date" autocomplete="off" name="to">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </center> 
+            <div id="from-to-div">
+                <center><button onclick="FetchFormOrdersDataFromServerWithArrayLengthOfNine ('vieworders_subdealer_orders_view_by_from_to_endpoint','outer-plascon-view-by-from-to-div','plascon-from-to-form')" class="show-btn view-font-styles"  >Show</button></center>
+                <div id="outer-plascon-view-by-from-to-div"></div>
             </div>
+            <br><br><br>
         </div> 
-    </div> <!-- End of acordination-contents-area -->
+    
+        <!-- ===================================================== -->
+        <center><button onclick="ShowPlasconSubdealerOrdersByLastWeekDiv ()" class=" orders-view-btn view-font-styles">Last Week</button> </center><br><br>
+        <div id="plascon-subdealer-orders-by-last-week-div">
+                <!-- <center><button onclick="show_luwombo_orders_received_last_week_all_grand_child_div ()" class="view-btns-grand-child   view-font-styles">All</button> -->
+            <center><button onclick="FetchFormOrdersDataFromServerWithArrayLengthOfNine_LastWeek ('vieworders_subdealer_orders_view_by_last_week_endpoint','outer-plascon-view-by-last-week-div')" class="show-btn view-font-styles" >Show</button><br><br></center>
+                    <div id="outer-plascon-view-by-last-week-div"></div>
+                    <!-- <button onclick="close_luwombo_orders_received_last_week_all_grand_child_div ()"  class="close-child-btn view-font-styles" >Close</button><br><br> -->
+                    
+                <br><br>
+        </div>
+
+        <!-- ===================================================== -->
+        <center><button onclick="ShowPlasconSubdealerOrdersByThisMonthDiv ()" class="orders-view-btn view-font-styles">This Month</button></center> <br><br>
+        <div id="plascon-subdealer-orders-by-this-month-div">
+            <!-- <button  onclick="show_luwombo_orders_received_this_month_all_grand_child_div()" class="view-btns-grand-child   view-font-styles">All</button> -->
+            <center><button onclick="FetchOrdersDataFromServerWithArrayLengthOfSix ('vieworders_subdealer_orders_view_by_this_month_endpoint','outer-plascon-view-by-this-month-div')"   class="show-btn view-font-styles"  >Show</button></center>
+                <div id="outer-plascon-view-by-this-month-div"></div>
+                <br><br>
+        </div>
+        <!-- ===================================================== -->
+        <center><button onclick="ShowPlasconSubdealerOrdersByLastMonthDiv ()" class="orders-view-btn  view-font-styles">Last Month</button></center> <br><br>
+        <div id="plascon-subdealer-orders-by-last-month-div">
+            <center><button onclick="FetchOrdersDataFromServerWithArrayLengthOfSix ('vieworders_subdealer_orders_view_by_last_month_endpoint','outer-plascon-view-by-last-month-div')"   class="show-btn view-font-styles"  >Show</button></center>
+                <div id="outer-plascon-view-by-last-month-div"></div>
+                <br><br>
+        </div>
+            
+        </div><!-- End of acordination-contents-area --> 
+    </div> 
+</div>
     <button class="main-acordination-btns"> </button>
 
-</div>
-
-  
-</div>
-
-  
-<!-- <div id="plascon-customer-list-div"></div> -->
 
 
 <script>

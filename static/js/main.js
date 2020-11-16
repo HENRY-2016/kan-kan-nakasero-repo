@@ -2,6 +2,7 @@
 
 // Main Navigetion
 function Load_index () { window.location="index.html"}
+function Load_Admin_Add () {window.location="AdminAdd.html"}
 function Load_Admin_Edits () {window.location="AdminEdits.html"}
 function Load_Admin_View_Orders () {window.location="ViewOrders.html"}
 
