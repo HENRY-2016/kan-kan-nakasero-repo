@@ -1,0 +1,215 @@
+
+<html>
+<head>
+<title>Admin | View Customers </title>
+<meta charset="utf-8">
+<script src="static/js/main.js" ></script>
+<!-- <script src="static/js/main_view.js" ></script> -->
+<script src="static/js/register.js"></script>
+<script src="static/js/jquery.min.js" ></script>
+<link rel="stylesheet" type="text/css" href="static/css/main.css" >
+<link rel="stylesheet" type="text/css" href="static/css/w3.css">
+
+<script>
+
+function LoadNamesFromServer ()
+{
+    GetCustomersNames ('register_painter_names_view_endpoint');
+
+}
+function SetupPaintersAutocompleteNames () {autocomplete(document.getElementById("painter-name-input-id"), names)}
+
+function InitializeEveryThing ()
+{
+    setTimeout( LoadNamesFromServer , 1000);
+    setTimeout(SetupPaintersAutocompleteNames,3000)
+    // CreateDynamicRegistrationForm ('outer-painter-view-by-name-div')
+}
+
+</script>
+
+</head>
+<body class="main_body" onload="InitializeEveryThing ()" >
+<div id="main-header">
+    <div  id= "Navigetion" class=" w3-light-grey header">
+        <!-- ======= CLOSE ====== -->
+    <span href="javascript:void(0)" class="closebtn" onclick="CloseNavigetion()"><label class="close-navi-span"> &times;</label></span><!-- closs the navi -->
+
+<div id="navigetion-links-div">
+    <label class="our-products-label" > Our Products</label>
+    <div id="Drop-Down-Id">
+        <a onclick="OpenDropDown ('Plascon-Types-Id')" >Plascon</a>
+        <div id="Plascon-Types-Id" class="Drop-Down-Content w3-white w3-card-4">
+            <label onclick="Load_Plascon_Pack_View ()" class="drop-down-content-label" >Pack</label>
+            <label onclick="Load_Plascon_Gloss_View ()" class="drop-down-content-label">Gloss</label>
+            <label  onclick="Load_Plascon_Sundry_View ()" class="drop-down-content-label" >Sundry </label>
+            <label onclick="Load_Plascon_Varnish_View ()"class="drop-down-content-label" >Varnish</label>
+            <label onclick="Load_Plascon_Primers_View ()" class="drop-down-content-label" >Primers</label>
+            <label onclick="Load_Plascon_Emulsion_View ()" class="drop-down-content-label">Emulsion</label>
+            <label onclick="Load_Plascon_Thinners_View ()" class="drop-down-content-label" >Thinners</label>
+            <label onclick="Load_Plascon_Undercoat_View ()" class="drop-down-content-label" >Undercoat</label>
+            <label onclick="Load_Plascon_Aluminium_View ()" class="drop-down-content-label" >Aluminium</label>
+            <!-- <label onclick="Load_Plascon_Industrial_View ()" class="drop-down-content-label" >Industrial</label> -->
+            <label onclick="Load_Plascon_Roof_Floor_View ()" class="drop-down-content-label" >Roof & Floor</label>
+            <label onclick="Load_Plascon_Roadmarking_View ()" class="drop-down-content-label" >Roadmarking</label>
+            <label onclick="Load_Plascon_waterproofing_View ()" class="drop-down-content-label" > Water proofing</label>
+            <label onclick="Load_Plascon_Architectural_finishes_View ()" class="drop-down-content-label" >Architectural  finishes</label>
+        </div>
+
+        <a onclick="OpenDropDown ('Plumbing-Id')" >Plumbing</a>
+        <div id="Plumbing-Id" class="Drop-Down-Content w3-white w3-card-4">
+            <label class="content-sub-title-labels" >Fittings</label>
+            <!--
+            <label class="drop-down-content-label">GI </label>
+            <label class="drop-down-content-label">PE </label>
+            <label class="drop-down-content-label">PPR </label>
+            <label class="drop-down-content-label">PVC </label> 
+            -->
+            <!-- <label class="content-sub-title-labels" >Ceremics</label> -->
+                <!-- <label onclick="Load_Donald_View ()" class="drop-down-content-label">Toilets</label> -->
+                <label class="drop-down-content-label">Kitchen </label>
+                <label class="drop-down-content-label">Bathroom</label>
+
+        </div>
+
+        <a onclick="OpenDropDown ('Electricals-Id')" >Electricals</a>
+        <div id="Electricals-Id" class="Drop-Down-Content w3-white w3-card-4">
+            <label class="drop-down-content-label">Chint</label>
+            <label  class="drop-down-content-label">Panasonic</label>
+            <!-- 
+                onclick="Load_Chint_View()"
+                onclick="Load_Panasonic_View ()"
+                -->
+        </div>
+
+        <a onclick="OpenDropDown ('Floor-Walls-Id')" > Floor Products </a>
+        <div id="Floor-Walls-Id" class="Drop-Down-Content w3-white w3-card-4">
+                <label class="content-sub-title-labels" >Italian Floors</label>
+                    <!-- <label class="drop-down-content-label">Glamora</label> -->
+                <!-- <label class="content-sub-title-labels" >Floor</label> -->
+                    <label class="drop-down-content-label">Veluti Veneti</label>
+                <label class="content-sub-title-labels" >Tiles</label>
+                    <label class="drop-down-content-label">Twyford</label>
+                    <label class="drop-down-content-label">Goodwill</label>
+        </div>
+        <a onclick="OpenDropDown ('Water-Proofing-Id')" >Water Proofing</a>
+        <div id="Water-Proofing-Id" class="Drop-Down-Content w3-white w3-card-4">
+            <label class="drop-down-content-label">Mapei</label>
+            <!-- <label class="drop-down-content-label">Dr. Fix it</label> -->
+            <!-- <label class="drop-down-content-label">Plascon</label> -->
+            <!-- <label class="drop-down-content-label">Sadolin</label> -->
+        </div>
+
+        <!-- <a onclick="OpenDropDown ('Building-Materials-Id')" >Building Materials</a>
+        <div id="Building-Materials-Id" class="Drop-Down-Content w3-white w3-card-4">
+            <label class="drop-down-content-label">Major</label>
+            <label class="drop-down-content-label">Minor</label>
+            <label class="drop-down-content-label" >Others</label>
+        </div> -->
+        <label class="our-products-label" > Others</label>
+
+        <a onclick="Load_index ()" class="drop-down-content-label" >Home</a>
+    </div>
+</div>
+
+</div>
+<div id="NaviDivHeader">
+    <label class="open-navigation-label" onclick="OpenNavigetion()">&#9776;</label>
+    <!-- <label class="title-label">Emulsion paint</label> -->
+</div>
+<script>
+function OpenNavigetion(){document.getElementById("Navigetion").style.width = "250px"}
+function CloseNavigetion (){document.getElementById("Navigetion").style.width = "0"}
+function OpenDropDown (DropDownId)
+{
+document.getElementById(DropDownId).classList.toggle("w3-show");
+document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-show");
+}
+</script>
+
+</div> <!-- main-header-->
+
+<div id="main-body" > <!-- Begin main-body div -->
+    <br><br>
+    <button class="menu_btns view-font-styles" onclick="Show_delete_menu_panel_div ()">Veiwing :: Orders </button>
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <button class="main-acordination-btns">Painters </button>
+    <div class="acordination-contents-area"><br>
+        <!-- ===================================================== -->
+        <!-- <center><button onclick="ShowRegisteredPainterViewAllDiv ()" class="orders-view-btn view-font-styles">All</button></center><br><br> -->
+            <div id="registered-painter-view-all-div">
+                <center><button onclick="FetchCustomersData('register_painters_view_all_endpoint','painters-tbody','painters-veiw-all-div')" class="show-btn  view-font-styles">Show</button></center>
+                <div id="painters-veiw-all-div">
+                    <table class=" w3-bordered user-scrolling-table">
+                        <tbody id="painters-tbody"></tbody>
+                    </table>
+                </div>
+                <br><br>
+                <center><button onclick="ShowPlasconRetailOrdersByDateDateDiv ()" class="view-btns-grand-child view-font-styles">Date</button></center>
+                <div id="registered-painter-veiw-by-name-div" >
+                    <center>
+                        <form class="form-from-to-form" id="painter-name-form" >
+                            <label>Name</label><br>
+                            <div class="autocomplete">
+                                <input class="order-inputs" id="painter-name-input-id" name="name" placeholder="Type first letter" onchange="FetchCustomersRegistrationFormFromServer ('register_painters_view_data_endpoint','outer-painter-view-by-name-div')" ><br>
+                                <!-- <input class="order-inputs" id="painter-name-input-id" name="date" placeholder="Type first letter"><br>,'painter-name-form'  -->
+                            </div>
+                        </form>
+                    </center>
+                    <center>
+                        <div id="outer-painter-view-by-name-div"></div>
+                    </center>
+                    <br>
+                </div>
+            </div>
+    </div> <!-- End of acordination-contents-area -->
+
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+    <button class="main-acordination-btns">Subdealer </button>
+    <div class="acordination-contents-area"><br>
+        <!-- ===================================================== -->
+        <!-- <center><button onclick="ShowRegisteredSubdealerViewAllDiv ()" class="orders-view-btn view-font-styles">All</button></center><br><br> -->
+            <div id="registered-subdealer-view-all-div">
+                <center><button onclick="FetchOrdersDataFromServerWithArrayLengthOfSix ('vieworders_subdealer_orders_view_all_endpoint','outer-plascon-view-by-all-div')" class="show-btn  view-font-styles">Show</button></center>
+                <div id="outer-plascon-view-by-all-div"></div>
+                <br><br>
+            </div>
+            
+        </div><!-- End of acordination-contents-area --> 
+    </div> 
+</div>
+    <button class="main-acordination-btns"> </button>
+    
+
+
+<script>
+
+
+// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+var acc = document.getElementsByClassName("main-acordination-btns");
+var i;
+
+for (i = 0; i < acc.length; i++) {
+    acc[i].onclick = function() {
+    this.classList.toggle("active");
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight){
+        panel.style.maxHeight = null;
+    } else {
+        panel.style.maxHeight = panel.scrollHeight + "px";
+    }
+    }
+}
+</script>
+</body>
+</html>
+
+
+

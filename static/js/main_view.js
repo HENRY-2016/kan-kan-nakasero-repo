@@ -1,6 +1,8 @@
 
 
 
+
+    // On ViewOrders Page
 function HideAllVeiwDivs ()
 {
     // =============> RETAIL
@@ -165,3 +167,4 @@ function ShowPlasconSubdealerByDateTodayGrandChildDiv ()
 
 function ShowPlasconSubdealerOrdersByDateDateDiv ()
 {document.getElementById('plascon-subdealer-by-date-today-grand-child-div').style.display = 'none';document.getElementById('plascon-subdealer-orders-by-date-date-div').style.display = 'block';}
+

@@ -84,17 +84,13 @@
                                             /*
                                                +++++++++++++++++++++++++ ++
                                                +                          +
-                                               +   Admin edits            +
+                                               +   Admin View Customers   +
                                                +                          +
                                                ++++++++++++++++++++++++++++
                                             */
 
 
-.order-inputs:focus
-{
 
-border-bottom: 2px solid black;
-}
 
 .order-inputs
 {
@@ -109,11 +105,89 @@ border-bottom: 2px solid black;
 	border-bottom: 2px solid blue;
 	background: transparent;
 	margin-bottom: 10px;
-	font: 16px Arial, Helvetica, sans-serif;
+    font-size: 16px ;
+    color: blue;
 	height: 35px;
-    /* text-align: center; */
-
 }
+
+.order-inputs:focus {border-bottom: 2px solid black;}
+
+.register-table-painter
+{
+    width: 600px;
+    border-collapse: collapse;
+    border: 3px solid black;
+    background: whitesmoke;
+}
+
+
+.register-table,.register-table-painter,.register-table-tr
+{
+ border: 2px solid black;
+}
+
+.register-table-td-long-text,.register-table-painter,.register-p-text
+{
+    /* overflow-wrap: normal; */
+   text-overflow: ellipsis;
+   display: inline-block;
+   /* white-space: nowrap; */
+   /* max-width: 100%; */
+}
+
+
+.regester-form-labels
+{
+    color:black;
+    padding-left: 5%;
+    font-size: 15px;
+    font-weight:bold;
+    font-family:Times New Roman Times, serif;
+}
+
+.regester-form-inputs-painter
+{
+    box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	outline: none;
+	display: block;
+	width: 100%;
+	padding: 7px;
+	border: none;
+	background: transparent;
+	margin-bottom: 10px;
+	font: 16px Arial, Helvetica, sans-serif;
+    height: 35px;
+    border-bottom: 1px dotted black;
+
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 16px;
+    color: blue;
+    
+}
+.regester-form-inputs-painter:hover{border-bottom: 4px dotted green;}
+
+.register-p-text
+{
+    margin-left: 3%;
+    margin-right: 3%;
+    /* z-index: 20; */
+}
+
+.img-to-be-displayed
+{
+    width: 200px;
+    height: 200px;
+    background:lightblue;
+}
+
+
+
+
+
+
+
 .interest-description-btns
     {
         background-color:#708090;
@@ -533,6 +607,35 @@ padding: 12px 12px 12px 12px;
     height: 350px;
     width: 95%;
 }
+
+
+
+.autocomplete 
+    {
+        /*the container must be positioned relative:*/
+        position: relative;
+        display: inline-block;
+    }
+.autocomplete-items 
+    {
+        color: white;
+        position: absolute;
+        border: 1px solid #d4d4d4;
+        border-bottom: none;
+        border-top: none;
+        z-index: 99;
+        /*position the autocomplete items to be the same width as the container:*/
+        top: 100%;
+        left: 0;
+        right: 0;
+    }
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    background-color: black;
+    border-bottom: 1px solid #d4d4d4;
+    }
+/* .autocomplete-items div:hover { background-color: #e9e9e9; } */
 
 /* ============================= ACORDINATION  ================ */
 
