@@ -21,9 +21,9 @@ function SetupPaintersAutocompleteNames () {autocomplete(document.getElementById
 
 function InitializeEveryThing ()
 {
-    setTimeout( LoadNamesFromServer , 1000);
-    setTimeout(SetupPaintersAutocompleteNames,3000)
-    // CreateDynamicRegistrationForm ('outer-painter-view-by-name-div')
+    // setTimeout( LoadNamesFromServer , 1000);
+    // setTimeout(SetupPaintersAutocompleteNames,3000)
+    CreateDynamicSubdealerRegistrationForm ('outer-subdealer-view-by-name-div')
 }
 
 </script>
@@ -154,7 +154,7 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
                         <form class="form-from-to-form" id="painter-name-form" >
                             <label>Name</label><br>
                             <div class="autocomplete">
-                                <input class="order-inputs" id="painter-name-input-id" name="name" placeholder="Type first letter" onchange="FetchCustomersRegistrationFormFromServer ('register_painters_view_data_endpoint','outer-painter-view-by-name-div')" ><br>
+                                <input class="order-inputs" id="painter-name-input-id" name="name" placeholder="Type first letter" onchange="FetchCustomersRegistrationFormFromServer ('register_painters_view_data_endpoint','outer-painter-view-by-name-div','painter-name-form')" ><br>
                                 <!-- <input class="order-inputs" id="painter-name-input-id" name="date" placeholder="Type first letter"><br>,'painter-name-form'  -->
                             </div>
                         </form>
@@ -173,19 +173,36 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
     <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
     <button class="main-acordination-btns">Subdealer </button>
     <div class="acordination-contents-area"><br>
-        <!-- ===================================================== -->
-        <!-- <center><button onclick="ShowRegisteredSubdealerViewAllDiv ()" class="orders-view-btn view-font-styles">All</button></center><br><br> -->
-            <div id="registered-subdealer-view-all-div">
-                <center><button onclick="FetchOrdersDataFromServerWithArrayLengthOfSix ('vieworders_subdealer_orders_view_all_endpoint','outer-plascon-view-by-all-div')" class="show-btn  view-font-styles">Show</button></center>
-                <div id="outer-plascon-view-by-all-div"></div>
+        <center><button onclick="FetchCustomersData('register_subdealer_view_all_endpoint','subdealer-tbody','subdealer-veiw-all-div')" class="show-btn  view-font-styles">Show</button></center>
+                <div id="subdealer-veiw-all-div">
+                    <table class=" w3-bordered user-scrolling-table">
+                        <tbody id="subdealer-tbody"></tbody>
+                    </table>
+                </div>
                 <br><br>
+                <center><button onclick="ShowPlasconRetailOrdersByDateDateDiv ()" class="view-btns-grand-child view-font-styles">Date</button></center>
+                <div id="registered-subdealer-veiw-by-name-div" >
+                    <center>
+                        <form class="form-from-to-form" id="subdealer-name-form" >
+                            <label>Name</label><br>
+                            <div class="autocomplete">
+                                <input class="order-inputs" id="subdealer-name-input-id" name="name" placeholder="Type first letter" onchange="FetchCustomersRegistrationFormFromServer ('register_subdealer_view_data_endpoint','outer-subdealer-view-by-name-div','subdealer-name-form')" ><br>
+                                <!-- <input class="order-inputs" id="subdealer-name-input-id" name="date" placeholder="Type first letter"><br>,'subdealer-name-form'  -->
+                            </div>
+                        </form>
+                    </center>
+                    <center>
+                        <!-- <div id="outer-subdealer-view-by-name-div"></div> -->
+                    </center>
+                    <br>
+                </div>
             </div>
-            
         </div><!-- End of acordination-contents-area --> 
     </div> 
 </div>
     <button class="main-acordination-btns"> </button>
     
+    <div id="outer-subdealer-view-by-name-div"></div>
 
 
 <script>

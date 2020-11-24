@@ -148,6 +148,140 @@ function CreateDynamicRegistrationForm  (resultsarry,OuterHtmlDiv)
     HtmlDiv.appendChild(DivContainer);
 }
 
+function CreateDynamicSubdealerRegistrationForm  (OuterHtmlDiv)
+{
+    let terms = "<b>Terms & conditions:<br> a) Eligibility for the painter’s discount</b>The painter should be a regular customer of plascon products and should have purchased from kankan outlets at least three (3) times.<br> Each painter will have an account at kankan and every product purchased by the painter will be listed under his account.<br><br><b>b) Receipt of the discount:</b><br>The accumulated discount from all purchases by the painter will be calculated and will be sent to the painter every end of the week (Saturday) on the painter’s mobile money account. <br><br><b>c) </b>All discounts will be calculated by getting the difference between the product price on the painter’s price list and the retail price list"
+    
+    let HtmlDiv = document.getElementById(OuterHtmlDiv);
+    let DivContainer = document.createElement('div');
+    let Table = document.createElement('table');
+    let Thead = document.createElement('thead');
+    let Theadtr = document.createElement('tr');
+    let Theadtd1 = document.createElement('td');
+    let Theadtd2 = document.createElement('td');
+    let Theadtd2_img = document.createElement('img');
+    let Emptytr1 = document.createElement('tr');
+    let Emptytd1 = document.createElement('td');
+    let Emptytr2 = document.createElement('tr');
+    let Emptytd2 = document.createElement('td');
+    let Tbodytr1 = document.createElement('tr');
+    let Tbodytd1_1 = document.createElement('td');
+    let Tbodytd1_2 = document.createElement('td');
+    let Tbodytr2 = document.createElement('tr');
+    let Tbodytd2_1 = document.createElement('td');
+    let Tbodytd2_2 = document.createElement('td');
+    let Tbodytr3 = document.createElement('tr');
+    let Tbodytd3_1 = document.createElement('td');
+    let Tbodytr4 = document.createElement('tr');
+    let Tbodytd4_1 = document.createElement('td');
+    let Tfooter = document.createElement('tfoot');
+
+    // Inputs
+    let nameinput = document.createElement('input');
+    let dateinput = document.createElement('input');
+    let phoneinput = document.createElement('input');
+    let addressinput = document.createElement('input');
+    let qn1input = document.createElement('input');
+    let qn2input = document.createElement('input');
+
+
+
+    Table.setAttribute('class','register-table-painter');
+    Theadtr.setAttribute('class','register-table-tr');
+    Theadtd1.setAttribute('class','register-p-text register-table-td');
+    Theadtd1.setAttribute('colspan',1);
+    Theadtd2.setAttribute('class','register-p-text register-table-td');
+    Theadtd2.setAttribute('colspan',1);
+    Theadtd2_img.setAttribute('class','img-to-be-displayed');
+    Emptytr1.setAttribute('class','register-table-tr')
+    Emptytd1.setAttribute('class','register-p-text register-table-td')
+    Emptytr2.setAttribute('class','register-table-tr')
+    Emptytd2.setAttribute('class','register-p-text register-table-td')
+    Tbodytr1.setAttribute('class','register-table-tr');
+    Tbodytd1_1.setAttribute('class','register-p-text register-table-td');
+    Tbodytd1_2.setAttribute('class','register-p-text register-table-td');
+    Tbodytr2.setAttribute('class','register-table-tr');
+    Tbodytd2_1.setAttribute('class','register-p-text register-table-td');
+    Tbodytd2_2.setAttribute('class','register-p-text register-table-td');
+    // Tbodytr3.setAttribute('class','register-table-tr');
+    Tbodytd3_1.setAttribute('class','register-p-text register-table-td');
+    Tbodytd3_1.setAttribute('colspan',2);
+    // Tbodytr4.setAttribute('class','register-table-tr');
+    Tbodytd4_1.setAttribute('class','register-p-text register-table-td');
+    Tbodytd4_1.setAttribute('colspan',2);
+    Tfooter.setAttribute('class','register-p-text');
+
+    nameinput.setAttribute('class','register-p-text regester-form-inputs-painter');
+    dateinput.setAttribute('class','register-p-text regester-form-inputs-painter');
+    phoneinput.setAttribute('class','register-p-text regester-form-inputs-painter');
+    addressinput.setAttribute('class','register-p-text regester-form-inputs-painter');
+    qn1input.setAttribute('class','register-p-text regester-form-inputs-painter');
+    qn2input.setAttribute('class','register-p-text regester-form-inputs-painter');
+
+    nameinput.setAttribute('readonly','true');
+    dateinput.setAttribute('readonly','true');
+    phoneinput.setAttribute('readonly','true');
+    addressinput.setAttribute('readonly','true');
+    qn1input.setAttribute('readonly','true');
+    qn2input.setAttribute('readonly','true');
+
+
+
+    Theadtd1.innerHTML = "Profile pic";
+    Theadtd2.innerHTML = "Attached photo";
+    Tbodytd1_1.innerHTML = '<br>Name::'
+    Tbodytd1_2.innerHTML = '<br>Date of registration::'
+    Tbodytd2_1.innerHTML = '<br>Phone Number:::'
+    Tbodytd2_2.innerHTML = '<br>Address::'
+    Tbodytd3_1.innerHTML = '<br>What are your anticipated average purchases from our kankan in a month?';
+    Tbodytd4_1.innerHTML = '<br>How did you get to know about the painter’s discounts?'
+    Tfooter.innerHTML =  "<br>" + terms + "<br> <br>"
+
+    // nameinput.value = resultsarry[0][0]
+    // dateinput.value = resultsarry[0][1]
+    // phoneinput.value = resultsarry[0][2]
+    // addressinput.value = resultsarry[0][3]
+    // qn1input.value = resultsarry[0][4]
+    // qn2input.value = resultsarry[0][5]
+
+
+    Table.appendChild(Thead);
+
+    Theadtr.appendChild(Theadtd2);    
+    Theadtr.appendChild(Theadtd1);
+    Theadtr.appendChild(Theadtd2_img);    
+    Table.appendChild(Theadtr);
+
+    Tbodytd1_1.appendChild(nameinput);    
+    Tbodytr1.appendChild(Tbodytd1_1);
+    Tbodytd1_2.appendChild(dateinput);
+    Tbodytr1.appendChild(Tbodytd1_2);
+    Table.appendChild(Tbodytr1);
+
+    Emptytr1.appendChild(Emptytd1);
+    Table.appendChild(Emptytr1);
+    Tbodytd2_1.appendChild(phoneinput)
+    Tbodytr2.appendChild(Tbodytd2_1);
+    Tbodytd2_2.appendChild(addressinput)
+    Tbodytr2.appendChild(Tbodytd2_2);
+    Table.appendChild(Tbodytr2);
+
+    Emptytr2.appendChild(Emptytd2);
+    Table.appendChild(Emptytr2);
+    Tbodytd3_1.appendChild(qn1input);
+    Tbodytr3.appendChild(Tbodytd3_1);
+    Table.appendChild(Tbodytr3);
+
+    Tbodytd4_1.appendChild(qn2input);
+    Tbodytr4.appendChild(Tbodytd4_1);
+    Table.appendChild(Tbodytr4);
+
+    Table.appendChild(Tfooter);
+    DivContainer.appendChild(Table);
+    HtmlDiv.appendChild(DivContainer);
+}
+
+
 
 var names
 
@@ -186,7 +320,7 @@ function FetchCustomersData (endpointurl, tabletbody, htmldiv)
                     let td,tr;
                     // add table headings
                     let th_names = new Array ();
-                    th_names.push(["Name","Contacts","Address"]);
+                    th_names.push(["Name","Contacts","Location"]);
                     let columns_to_count = th_names[0].length;
                     row = tbody.insertRow(-1); 
                     for (let looper =0; looper<columns_to_count; ++looper)
@@ -220,10 +354,11 @@ function FetchCustomersData (endpointurl, tabletbody, htmldiv)
 function FetchCustomersRegistrationFormFromServer (endpointurl,OuterHtmlDiv)
 {
     name = $('#painter-name-input-id').val()
+    // name = document.getElementById('painter-name-input-id').value;
     console.log(name)
   
     let req = new XMLHttpRequest();
-    req.open('post', registerurl + endpointurl,true)
+    req.open('post', registerurl + endpointurl + '/'+name ,true)
     req.onload = function ()
         {
             let results = JSON.parse(this.responseText);
@@ -235,7 +370,7 @@ function FetchCustomersRegistrationFormFromServer (endpointurl,OuterHtmlDiv)
                     CreateDynamicRegistrationForm(results,OuterHtmlDiv)
                 }
         }
-        form = new FormData(document.getElementById(Orderformid));
+        // form = new FormData(document.getElementById(Orderformid));
         // form = new FormData(name);        
         // form = name
         req.send();
