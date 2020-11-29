@@ -14,16 +14,21 @@
 
 function LoadNamesFromServer ()
 {
-    GetCustomersNames ('register_painter_names_view_endpoint');
-
+    // GetCustomersNames ('register_painter_names_view_endpoint');
+    GetRegisteredPainters ("register_painter_names_endpoint")
 }
 function SetupPaintersAutocompleteNames () {autocomplete(document.getElementById("painter-name-input-id"), names)}
-
+function SetupNamesSelectionOptions ()
+    {
+        ShowRegisteredPainterOptions ('painter-name-input-id')
+    }
 function InitializeEveryThing ()
 {
-    // setTimeout( LoadNamesFromServer , 1000);
+    setTimeout( LoadNamesFromServer , 1000);
+    setTimeout(SetupNamesSelectionOptions, 2000)
     // setTimeout(SetupPaintersAutocompleteNames,3000)
-    CreateDynamicSubdealerRegistrationForm ('outer-subdealer-view-by-name-div')
+    CreateDynamicSubdealerRegistrationForm ('outer-subdealer-body-div','outer-subdealer-footer-div')
+    // FetchSubdealersRegistrationFormFromServer ('register_subdealer_view_form_endpoint','outer-subdealer-body-div','outer-subdealer-footer-div')
 }
 
 </script>
@@ -54,6 +59,7 @@ function InitializeEveryThing ()
             <label onclick="Load_Plascon_Roadmarking_View ()" class="drop-down-content-label" >Roadmarking</label>
             <label onclick="Load_Plascon_waterproofing_View ()" class="drop-down-content-label" > Water proofing</label>
             <label onclick="Load_Plascon_Architectural_finishes_View ()" class="drop-down-content-label" >Architectural  finishes</label>
+            <label onclick="Load_ColourCharts ()" class="drop-down-content-label" >Colour Charts</label>
         </div>
 
         <a onclick="OpenDropDown ('Plumbing-Id')" >Plumbing</a>
@@ -153,10 +159,11 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
                     <center>
                         <form class="form-from-to-form" id="painter-name-form" >
                             <label>Name</label><br>
-                            <div class="autocomplete">
-                                <input class="order-inputs" id="painter-name-input-id" name="name" placeholder="Type first letter" onchange="FetchCustomersRegistrationFormFromServer ('register_painters_view_data_endpoint','outer-painter-view-by-name-div','painter-name-form')" ><br>
-                                <!-- <input class="order-inputs" id="painter-name-input-id" name="date" placeholder="Type first letter"><br>,'painter-name-form'  -->
-                            </div>
+                            <!-- <div class="autocomplete">
+                                <input class="order-inputs" id="painter-name-input-id" name="name" placeholder="Type first letter" onchange="FetchPaintersRegistrationFormFromServer ('register_painters_view_form_endpoint','outer-painter-view-by-name-div','painter-name-form')" ><br>
+                            </div> -->
+						<select id="painter-name-input-id" placeholder="Colour" name="name" class="paint-name order-inputs" onchange="FetchPaintersRegistrationFormFromServer ('register_painters_view_form_endpoint','outer-painter-view-by-name-div','painter-name-form')"><option></option></select>
+
                         </form>
                     </center>
                     <center>
@@ -186,14 +193,13 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
                         <form class="form-from-to-form" id="subdealer-name-form" >
                             <label>Name</label><br>
                             <div class="autocomplete">
-                                <input class="order-inputs" id="subdealer-name-input-id" name="name" placeholder="Type first letter" onchange="FetchCustomersRegistrationFormFromServer ('register_subdealer_view_data_endpoint','outer-subdealer-view-by-name-div','subdealer-name-form')" ><br>
+                                <input class="order-inputs" id="subdealer-name-input-id" name="name" placeholder="Type first letter" onchange="FetchSubdealersRegistrationFormFromServer ('register_subdealer_view_form_endpoint','outer-subdealer-body-div','outer-subdealer-footer-div')" ><br>
                                 <!-- <input class="order-inputs" id="subdealer-name-input-id" name="date" placeholder="Type first letter"><br>,'subdealer-name-form'  -->
                             </div>
                         </form>
                     </center>
-                    <center>
-                        <!-- <div id="outer-subdealer-view-by-name-div"></div> -->
-                    </center>
+                    <!-- <div id="outer-subdealer-body-div"></div>
+                    <div id="outer-subdealer-footer-div"></div> -->
                     <br>
                 </div>
             </div>
@@ -201,10 +207,9 @@ document.getElementById(DropDownId).previousElementSibling.classList.toggle("w3-
     </div> 
 </div>
     <button class="main-acordination-btns"> </button>
-    
-    <div id="outer-subdealer-view-by-name-div"></div>
-
-
+    <div id="outer-subdealer-body-div"></div>
+    <div id="outer-subdealer-footer-div"></div>
+    <p>kkkkkkkkkkkkkkkkkkkkkkkk</p>
 <script>
 
 

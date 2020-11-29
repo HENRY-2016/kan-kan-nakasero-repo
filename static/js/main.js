@@ -6,6 +6,7 @@ function Load_Admin_Add () {window.location="AdminAdd.html"}
 function Load_Admin_Edits () {window.location="AdminEdits.html"}
 function Load_Admin_View_Registered () {window.location="ViewRegistered.html"}
 function Load_Admin_View_Orders () {window.location="ViewOrders.html"}
+function Load_ColourCharts () {window.location="ColourCharts.html"}
 
 
 // function Load_Chint_View () {window.location="guichint.html"}
